@@ -16,7 +16,9 @@ namespace RAS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new ConfigForm());
             Application.Run(new MainForm());
+            
         }
     }
 }
