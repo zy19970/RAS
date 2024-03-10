@@ -12,6 +12,17 @@ namespace RAS
 {
     public partial class MainForm : Form
     {
+        /********定义电机CAN驱动*************************/
+        static CANalystHelper Cnh = new CANalystHelper();
+        HDTDriver HDTX = new HDTDriver("00000601", Cnh);
+        HDTDriver HDTY = new HDTDriver("00000602", Cnh);
+        HDTDriver HDTZ = new HDTDriver("00000603", Cnh);
+        /************************************************/
+
+
+
+
+
         public MainForm()
         {
             InitializeComponent();
