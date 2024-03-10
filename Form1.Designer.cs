@@ -197,6 +197,8 @@
             this.button26 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -236,6 +238,7 @@
             this.groupBox14.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -467,6 +470,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.pictureBox5);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label11);
@@ -486,9 +491,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(136, 62);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 12);
+            this.label12.Size = new System.Drawing.Size(52, 12);
             this.label12.TabIndex = 17;
-            this.label12.Text = "康复训练";
+            this.label12.Text = "CAN接口";
             // 
             // pictureBox3
             // 
@@ -2030,6 +2035,25 @@
             this.textBox11.Text = "10";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(199, 62);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(57, 12);
+            this.label32.TabIndex = 19;
+            this.label32.Text = "康复训练";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::RAS.Properties.Resources.led_on;
+            this.pictureBox5.Location = new System.Drawing.Point(205, 23);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(37, 36);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 18;
+            this.pictureBox5.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2117,6 +2141,7 @@
             this.groupBox12.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2284,6 +2309,8 @@
         private System.Windows.Forms.CheckBox checkBox18;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_details;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 
