@@ -85,6 +85,7 @@
     <Compile Include="KinematicsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringHelper.cs" />
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
