@@ -53,8 +53,18 @@ namespace RAS
             this.Hide();
             ConfigForm CfgForm = new ConfigForm();
             CfgForm.ShowDialog();
-            //此处添加代码，配置完毕重读重要变量
             this.Show();
+
+
+            if (!CfgForm.isFileChanged)
+            {
+                Console.WriteLine("配置文件未修改.");
+                return;
+            }
+
+            //此处添加代码，配置完毕重读重要变量
+            Console.WriteLine(CfgForm.STM32COM);
+
         }
     }
 }

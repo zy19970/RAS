@@ -16,6 +16,7 @@ namespace RAS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Control.CheckForIllegalCrossThreadCalls = false;
             //Application.Run(new ConfigForm());
             Application.Run(new MainForm());
             
