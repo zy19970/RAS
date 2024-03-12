@@ -43,8 +43,25 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // Save_button
@@ -200,6 +217,196 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CAN分析仪配置";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.textBox20);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.textBox21);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.textBox18);
+            this.groupBox4.Controls.Add(this.label20);
+            this.groupBox4.Controls.Add(this.textBox19);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.textBox17);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.textBox16);
+            this.groupBox4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox4.Location = new System.Drawing.Point(12, 191);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(415, 123);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "训练空间配置";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(90, 30);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(33, 16);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "X轴";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(12, 89);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 16);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "背伸-:";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox17.ForeColor = System.Drawing.Color.Black;
+            this.textBox17.Location = new System.Drawing.Point(77, 85);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(58, 26);
+            this.textBox17.TabIndex = 42;
+            this.textBox17.Text = "10";
+            this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(12, 61);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(59, 16);
+            this.label17.TabIndex = 41;
+            this.label17.Text = "跖屈+:";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox16.ForeColor = System.Drawing.Color.Black;
+            this.textBox16.Location = new System.Drawing.Point(77, 53);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(58, 26);
+            this.textBox16.TabIndex = 40;
+            this.textBox16.Text = "10";
+            this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(217, 32);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(33, 16);
+            this.label24.TabIndex = 49;
+            this.label24.Text = "Y轴";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(152, 87);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(59, 16);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "外翻-:";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox18.ForeColor = System.Drawing.Color.Black;
+            this.textBox18.Location = new System.Drawing.Point(217, 83);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(58, 26);
+            this.textBox18.TabIndex = 47;
+            this.textBox18.Text = "10";
+            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(152, 59);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(59, 16);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "内翻+:";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox19.ForeColor = System.Drawing.Color.Black;
+            this.textBox19.Location = new System.Drawing.Point(217, 51);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(58, 26);
+            this.textBox19.TabIndex = 45;
+            this.textBox19.Text = "10";
+            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(351, 30);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(33, 16);
+            this.label25.TabIndex = 54;
+            this.label25.Text = "Z轴";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(286, 85);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(59, 16);
+            this.label21.TabIndex = 53;
+            this.label21.Text = "内收-:";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox20.ForeColor = System.Drawing.Color.Black;
+            this.textBox20.Location = new System.Drawing.Point(351, 81);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(58, 26);
+            this.textBox20.TabIndex = 52;
+            this.textBox20.Text = "10";
+            this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(286, 57);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 16);
+            this.label22.TabIndex = 51;
+            this.label22.Text = "外展+:";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox21.ForeColor = System.Drawing.Color.Black;
+            this.textBox21.Location = new System.Drawing.Point(351, 49);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(58, 26);
+            this.textBox21.TabIndex = 50;
+            this.textBox21.Text = "10";
+            this.textBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ConfigForm
             // 
             this.AcceptButton = this.Save_button;
@@ -207,6 +414,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel_button;
             this.ClientSize = new System.Drawing.Size(439, 521);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox2);
@@ -223,6 +431,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -243,5 +453,21 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox21;
     }
 }
