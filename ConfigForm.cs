@@ -12,6 +12,7 @@ namespace RAS
 {
     public partial class ConfigForm : Form
     {
+        IniHelper ConfigFile = new IniHelper();//定义ini读取类
         public ConfigForm()
         {
             InitializeComponent();
