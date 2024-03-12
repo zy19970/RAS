@@ -50,10 +50,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.open_configform_button = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -197,14 +199,13 @@
             this.button26 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -238,7 +239,6 @@
             this.groupBox14.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -428,18 +428,19 @@
             this.button6.Text = "保存";
             this.button6.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // open_configform_button
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("凤凰点阵体 16px", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(238, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(99, 46);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "配置文件";
-            this.button4.UseVisualStyleBackColor = false;
+            this.open_configform_button.BackColor = System.Drawing.Color.Transparent;
+            this.open_configform_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.open_configform_button.Font = new System.Drawing.Font("凤凰点阵体 16px", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.open_configform_button.ForeColor = System.Drawing.Color.Black;
+            this.open_configform_button.Location = new System.Drawing.Point(238, 12);
+            this.open_configform_button.Name = "open_configform_button";
+            this.open_configform_button.Size = new System.Drawing.Size(99, 46);
+            this.open_configform_button.TabIndex = 9;
+            this.open_configform_button.Text = "配置文件";
+            this.open_configform_button.UseVisualStyleBackColor = false;
+            this.open_configform_button.Click += new System.EventHandler(this.open_configform_button_Click);
             // 
             // button3
             // 
@@ -485,6 +486,25 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "状态监控";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(199, 62);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(57, 12);
+            this.label32.TabIndex = 19;
+            this.label32.Text = "康复训练";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::RAS.Properties.Resources.led_on;
+            this.pictureBox5.Location = new System.Drawing.Point(205, 23);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(37, 36);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 18;
+            this.pictureBox5.TabStop = false;
             // 
             // label12
             // 
@@ -2035,25 +2055,6 @@
             this.textBox11.Text = "10";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(199, 62);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(57, 12);
-            this.label32.TabIndex = 19;
-            this.label32.Text = "康复训练";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::RAS.Properties.Resources.led_on;
-            this.pictureBox5.Location = new System.Drawing.Point(205, 23);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(37, 36);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 18;
-            this.pictureBox5.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2063,7 +2064,7 @@
             this.ClientSize = new System.Drawing.Size(1284, 661);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.open_configform_button);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox3);
@@ -2084,6 +2085,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -2141,7 +2143,6 @@
             this.groupBox12.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2154,7 +2155,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button open_configform_button;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;

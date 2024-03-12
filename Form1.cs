@@ -47,5 +47,14 @@ namespace RAS
         {
 
         }
+
+        private void open_configform_button_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ConfigForm CfgForm = new ConfigForm();
+            CfgForm.ShowDialog();
+            //此处添加代码，配置完毕重读重要变量
+            this.Show();
+        }
     }
 }
