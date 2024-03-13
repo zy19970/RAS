@@ -22,6 +22,7 @@ namespace RAS
         {
             pictureBox = picB;
             picB.SizeMode = PictureBoxSizeMode.Zoom;
+            Off();
         }
 
 
