@@ -22,12 +22,12 @@ namespace RAS
         public string M8128COM = "COM26";   //定义六维力矩串口号
         public int Baud2COM = 115200;       //定义波特率
 
-        public int RomLimitBeishen = 10;
-        public int RomLimitZhiqu = 10;
-        public int RomLimitNeifan = 10;
-        public int RomLimitWaifan = 10;
-        public int RomLimitNeishou = 10;
-        public int RomLimitWaizhan = 10;
+        public int RomLimitBeishen = 10;    //定义背伸运动极限
+        public int RomLimitZhiqu = 10;      //定义跖屈运动极限
+        public int RomLimitNeifan = 10;     //定义内翻运动极限
+        public int RomLimitWaifan = 10;     //定义外翻运动极限
+        public int RomLimitNeishou = 10;    //定义内收运动极限
+        public int RomLimitWaizhan = 10;    //定义外展运动极限
 
 
 
@@ -42,10 +42,11 @@ namespace RAS
         /// </summary>
         void ReadFromFile()
         {
-
+            /********读取串口变量*************************/
             comboMCUCom.Text = ConfigFile.IniReadValue("serialport", "MCUserial");
             comboM8128Com.Text = ConfigFile.IniReadValue("serialport", "M8128serial");
 
+            /********读取运动范围变量*************************/
             textBoxBeishen.Text = ConfigFile.IniReadValue("ROM", "RomLimitBeishen");
             textBoxZhiqu.Text = ConfigFile.IniReadValue("ROM", "RomLimitZhiqu");
             textBoxNeifan.Text = ConfigFile.IniReadValue("ROM", "RomLimitNeifan");
@@ -59,9 +60,11 @@ namespace RAS
         /// </summary>
         void Save2File()
         {
+            /********写入串口变量*************************/
             ConfigFile.IniWriteValue("serialport", "M8128serial", comboM8128Com.Text);
             ConfigFile.IniWriteValue("serialport", "MCUserial", comboMCUCom.Text);
 
+            /********写入运动范围变量*************************/
             ConfigFile.IniWriteValue("ROM", "RomLimitBeishen", textBoxBeishen.Text);
             ConfigFile.IniWriteValue("ROM", "RomLimitZhiqu", textBoxZhiqu.Text);
             ConfigFile.IniWriteValue("ROM", "RomLimitNeifan", textBoxNeifan.Text);
