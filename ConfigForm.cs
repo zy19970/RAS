@@ -22,6 +22,13 @@ namespace RAS
         public string M8128COM = "COM26";   //定义六维力矩串口号
         public int Baud2COM = 115200;       //定义波特率
 
+        public int RomLimitBeishen = 10;
+        public int RomLimitZhiqu = 10;
+        public int RomLimitNeifan = 10;
+        public int RomLimitWaifan = 10;
+        public int RomLimitNeishou = 10;
+        public int RomLimitWaizhan = 10;
+
 
 
 
@@ -35,8 +42,16 @@ namespace RAS
         /// </summary>
         void ReadFromFile()
         {
+
             comboMCUCom.Text = ConfigFile.IniReadValue("serialport", "MCUserial");
             comboM8128Com.Text = ConfigFile.IniReadValue("serialport", "M8128serial");
+
+            textBoxBeishen.Text = ConfigFile.IniReadValue("ROM", "RomLimitBeishen");
+            textBoxZhiqu.Text = ConfigFile.IniReadValue("ROM", "RomLimitZhiqu");
+            textBoxNeifan.Text = ConfigFile.IniReadValue("ROM", "RomLimitNeifan");
+            textBoxWaifan.Text = ConfigFile.IniReadValue("ROM", "RomLimitWaifan");
+            textBoxNeishou.Text = ConfigFile.IniReadValue("ROM", "RomLimitNeishou");
+            textBoxWaizhan.Text = ConfigFile.IniReadValue("ROM", "RomLimitWaizhan");
         }
 
         /// <summary>
@@ -46,6 +61,13 @@ namespace RAS
         {
             ConfigFile.IniWriteValue("serialport", "M8128serial", comboM8128Com.Text);
             ConfigFile.IniWriteValue("serialport", "MCUserial", comboMCUCom.Text);
+
+            ConfigFile.IniWriteValue("ROM", "RomLimitBeishen", textBoxBeishen.Text);
+            ConfigFile.IniWriteValue("ROM", "RomLimitZhiqu", textBoxZhiqu.Text);
+            ConfigFile.IniWriteValue("ROM", "RomLimitNeifan", textBoxNeifan.Text);
+            ConfigFile.IniWriteValue("ROM", "RomLimitWaifan", textBoxWaifan.Text);
+            ConfigFile.IniWriteValue("ROM", "RomLimitNeishou", textBoxNeishou.Text);
+            ConfigFile.IniWriteValue("ROM", "RomLimitWaizhan", textBoxWaizhan.Text);
         }
 
         /// <summary>
@@ -75,6 +97,7 @@ namespace RAS
             SearchAndAddSerialToComboBox(STMSerial, comboMCUCom);
             SearchAndAddSerialToComboBox(M8128Serial, comboM8128Com);
         }
+
 
 
         private void Save_button_Click(object sender, EventArgs e)
