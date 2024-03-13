@@ -52,16 +52,16 @@
             this.button6 = new System.Windows.Forms.Button();
             this.open_configform_button = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ConnectButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.Train_LED_PicBox = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.CAN_LED_PicBox = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Tq_LED_PicBox = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.MCU_LED_PicBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -205,10 +205,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Train_LED_PicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAN_LED_PicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Tq_LED_PicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MCU_LED_PicBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -455,30 +455,31 @@
             this.button3.Text = "断开连接";
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // ConnectButton
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("凤凰点阵体 16px", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 46);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "连接串口";
-            this.button2.UseVisualStyleBackColor = false;
+            this.ConnectButton.BackColor = System.Drawing.Color.Transparent;
+            this.ConnectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ConnectButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ConnectButton.Font = new System.Drawing.Font("凤凰点阵体 16px", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ConnectButton.ForeColor = System.Drawing.Color.Black;
+            this.ConnectButton.Location = new System.Drawing.Point(12, 12);
+            this.ConnectButton.Name = "ConnectButton";
+            this.ConnectButton.Size = new System.Drawing.Size(99, 46);
+            this.ConnectButton.TabIndex = 7;
+            this.ConnectButton.Text = "连接";
+            this.ConnectButton.UseVisualStyleBackColor = false;
+            this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.pictureBox5);
+            this.groupBox1.Controls.Add(this.Train_LED_PicBox);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.CAN_LED_PicBox);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.Tq_LED_PicBox);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.MCU_LED_PicBox);
             this.groupBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(353, 64);
             this.groupBox1.Name = "groupBox1";
@@ -496,15 +497,15 @@
             this.label32.TabIndex = 19;
             this.label32.Text = "康复训练";
             // 
-            // pictureBox5
+            // Train_LED_PicBox
             // 
-            this.pictureBox5.Image = global::RAS.Properties.Resources.led_on;
-            this.pictureBox5.Location = new System.Drawing.Point(205, 23);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(37, 36);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 18;
-            this.pictureBox5.TabStop = false;
+            this.Train_LED_PicBox.Image = global::RAS.Properties.Resources.led_on;
+            this.Train_LED_PicBox.Location = new System.Drawing.Point(205, 23);
+            this.Train_LED_PicBox.Name = "Train_LED_PicBox";
+            this.Train_LED_PicBox.Size = new System.Drawing.Size(37, 36);
+            this.Train_LED_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Train_LED_PicBox.TabIndex = 18;
+            this.Train_LED_PicBox.TabStop = false;
             // 
             // label12
             // 
@@ -515,15 +516,15 @@
             this.label12.TabIndex = 17;
             this.label12.Text = "CAN接口";
             // 
-            // pictureBox3
+            // CAN_LED_PicBox
             // 
-            this.pictureBox3.Image = global::RAS.Properties.Resources.led_on;
-            this.pictureBox3.Location = new System.Drawing.Point(142, 23);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 36);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 16;
-            this.pictureBox3.TabStop = false;
+            this.CAN_LED_PicBox.Image = global::RAS.Properties.Resources.led_on;
+            this.CAN_LED_PicBox.Location = new System.Drawing.Point(142, 23);
+            this.CAN_LED_PicBox.Name = "CAN_LED_PicBox";
+            this.CAN_LED_PicBox.Size = new System.Drawing.Size(37, 36);
+            this.CAN_LED_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CAN_LED_PicBox.TabIndex = 16;
+            this.CAN_LED_PicBox.TabStop = false;
             // 
             // label11
             // 
@@ -534,15 +535,15 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "六维串口";
             // 
-            // pictureBox2
+            // Tq_LED_PicBox
             // 
-            this.pictureBox2.Image = global::RAS.Properties.Resources.led_on;
-            this.pictureBox2.Location = new System.Drawing.Point(81, 23);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(37, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
+            this.Tq_LED_PicBox.Image = global::RAS.Properties.Resources.led_on;
+            this.Tq_LED_PicBox.Location = new System.Drawing.Point(81, 23);
+            this.Tq_LED_PicBox.Name = "Tq_LED_PicBox";
+            this.Tq_LED_PicBox.Size = new System.Drawing.Size(37, 36);
+            this.Tq_LED_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Tq_LED_PicBox.TabIndex = 14;
+            this.Tq_LED_PicBox.TabStop = false;
             // 
             // label10
             // 
@@ -553,15 +554,15 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "MCU串口";
             // 
-            // pictureBox1
+            // MCU_LED_PicBox
             // 
-            this.pictureBox1.Image = global::RAS.Properties.Resources.led_on;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 23);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.MCU_LED_PicBox.Image = global::RAS.Properties.Resources.led_on;
+            this.MCU_LED_PicBox.Location = new System.Drawing.Point(28, 23);
+            this.MCU_LED_PicBox.Name = "MCU_LED_PicBox";
+            this.MCU_LED_PicBox.Size = new System.Drawing.Size(37, 36);
+            this.MCU_LED_PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MCU_LED_PicBox.TabIndex = 0;
+            this.MCU_LED_PicBox.TabStop = false;
             // 
             // tabControl1
             // 
@@ -2066,7 +2067,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.open_configform_button);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.chart2);
@@ -2085,10 +2086,10 @@
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Train_LED_PicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CAN_LED_PicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Tq_LED_PicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MCU_LED_PicBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -2157,7 +2158,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button open_configform_button;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ConnectButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -2182,11 +2183,11 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox MCU_LED_PicBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox Tq_LED_PicBox;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox CAN_LED_PicBox;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button button26;
@@ -2311,7 +2312,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_details;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox Train_LED_PicBox;
     }
 }
 

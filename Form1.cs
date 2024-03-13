@@ -19,6 +19,10 @@ namespace RAS
         HDTDriver HDTZ = new HDTDriver("00000603", Cnh);
         /************************************************/
 
+        LED CanLED = new LED();
+        LED McuLED = new LED();
+        LED TqLED = new LED();
+        LED TrainLED = new LED();
 
 
 
@@ -26,7 +30,19 @@ namespace RAS
         public MainForm()
         {
             InitializeComponent();
+            LEDInit();
         }
+
+
+        void LEDInit()
+        {
+            CanLED.SetPicBox(CAN_LED_PicBox);
+            McuLED.SetPicBox(MCU_LED_PicBox);
+            TqLED.SetPicBox(Tq_LED_PicBox) ;
+            TrainLED.SetPicBox(Train_LED_PicBox);
+        }
+
+
 
         private void button17_Click(object sender, EventArgs e)
         {
@@ -65,6 +81,12 @@ namespace RAS
             //此处添加代码，配置完毕重读重要变量
             Console.WriteLine(CfgForm.STM32COM);
 
+        }
+
+        private void ConnectButton_Click(object sender, EventArgs e)
+        {
+            if (Cnh.Strat()){ CanLED.On();  }
+            else { CanLED.Error(); }
         }
     }
 }
