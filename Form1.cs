@@ -1,8 +1,8 @@
-﻿#define SERIALPORT_REV_HANDLER
-//#define SERIALPORT_REV_PRIVATE
+﻿#define SERIALPORT_REV_HANDLER  //使用官方接口进行串口收发
+//#define SERIALPORT_REV_PRIVATE //使用私有接口进行串口收发
 
-//#define qDEBUG_ANGLE
-//#define qDEBUG_TQ
+//#define qDEBUG_ANGLE  //输出实时获取的位姿
+//#define qDEBUG_TQ     //输出实时获取的力矩
 
 
 using System;
