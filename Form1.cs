@@ -24,13 +24,16 @@ namespace RAS
     public partial class MainForm : Form
     {
         /********定义电机CAN驱动*************************/
+        #region 定义电机CAN驱动
         static CANalystHelper Cnh = new CANalystHelper();
         HDTDriver HDTX = new HDTDriver("00000601", Cnh);
         HDTDriver HDTY = new HDTDriver("00000602", Cnh);
         HDTDriver HDTZ = new HDTDriver("00000603", Cnh);
+        #endregion
         /************************************************/
 
         /********定义机器人硬件信息结构体*************************/
+        #region 定义机器人硬件信息结构体
         /// <summary>
         /// 六维力矩信息
         /// </summary>
@@ -54,10 +57,12 @@ namespace RAS
             public float degreeY;//Y方向实际角度
             public float degreeZ;//Z方向实际角度
         }
+        #endregion
         /************************************************/
 
 
         /********定义串口相关类*************************/
+        #region 定义串口相关类
         private string STM32COM;//MCU串口号
         private string M8128COM;//采集卡串口号
         private int Baud2COM = 115200;//串口通讯波特率
@@ -88,10 +93,12 @@ namespace RAS
         static Thread M8128RevMsgThread = new Thread(M8128RevStart);//MCU串口发送线程
 
         static bool IsConsoleError = false;//是否输出串口校验报错信息
+        #endregion
         /************************************************/
 
 
         /********动态图表相关变量*************************/
+        #region 动态图表相关变量
         static int NumOfPoint = 100;//曲线绘制点个数
 
         private Queue<double> XDegreedata = new Queue<double>(NumOfPoint);
@@ -109,19 +116,23 @@ namespace RAS
         public static Object ChartLock = new Object();//采集卡线程间安全锁
 
         bool IsPainting = false;
+        #endregion
         /************************************************/
 
         /********消息队列相关集合*************************/
+        #region 消息队列相关集合
         static private Queue DegreeXQueue = new Queue();
         static private Queue DegreeYQueue = new Queue();
         static private Queue DegreeZQueue = new Queue();
         static private Queue TorqueXQueue = new Queue();
         static private Queue TorqueYQueue = new Queue();
         static private Queue TorqueZQueue = new Queue();
+        #endregion
         /************************************************/
 
 
         /********传感器标定相关参数*************************/
+        #region 传感器标定相关参数
         static public float Offset_Fx = 52.255f;
         static public float Offset_Fy = -12.779f;
         static public float Offset_Fz = -50.789f;
@@ -133,17 +144,23 @@ namespace RAS
         static public float Offset_Dx = -3.566f;
         static public float Offset_Dy = 4.203f;
         static public float Offset_Dz = 4.071f;
+        #endregion
         /************************************************/
 
         /********指示灯相关类*************************/
+        #region 指示灯相关类
         LED CanLED = new LED();
         LED McuLED = new LED();
         LED TqLED = new LED();
         LED TrainLED = new LED();
+        #endregion
         /************************************************/
 
+        /********配置文件读写相关类*************************/
+        #region 配置文件读写相关类
         IniHelper ConfigFile = new IniHelper(@".\Config.ini");//定义ini读取类
-
+        #endregion
+        /************************************************/
 
 
         public MainForm()
@@ -153,7 +170,9 @@ namespace RAS
             SetialPortInit();
         }
 
-
+        /// <summary>
+        /// LED指示控件初始化
+        /// </summary>
         void LEDInit()
         {
             CanLED.SetPicBox(CAN_LED_PicBox);
@@ -163,7 +182,9 @@ namespace RAS
         }
 
         #region 串口操作
-
+        /// <summary>
+        /// 串口初始化，包含从ini文件读取变量
+        /// </summary>
         private void SetialPortInit()
         {
             STMSerial.DataReceived += new SerialDataReceivedEventHandler(STMDataReceivedHandler);
@@ -362,7 +383,7 @@ namespace RAS
         }
 
         /// <summary>
-        /// 私有实现，MCU串口接收线程
+        /// [已弃用]私有实现，MCU串口接收线程
         /// </summary>
         private static void STMRevThd()
         {
@@ -417,7 +438,7 @@ namespace RAS
             //    + "DegreeZ=" + DegreeSensor.degreeZ);
         }
         /// <summary>
-        /// 私有实现，MCU串口串口接收线程启动入口
+        /// [已弃用]私有实现，MCU串口串口接收线程启动入口
         /// </summary>
         private static void STMRevStart()
         {
@@ -557,7 +578,7 @@ namespace RAS
 
         }
         /// <summary>
-        /// 私有实现，M8128串口接收线程
+        /// [已弃用]私有实现，M8128串口接收线程
         /// </summary>
         private static void M8128RevThd()
         {
@@ -673,7 +694,7 @@ namespace RAS
             }
         }
         /// <summary>
-        /// 私有实现，M8128串口接收线程启动入口
+        /// [已弃用]私有实现，M8128串口接收线程启动入口
         /// </summary>
         private static void M8128RevStart()
         {
@@ -754,7 +775,11 @@ namespace RAS
         {
 
         }
-
+        /// <summary>
+        /// 唤起配置页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void open_configform_button_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -774,7 +799,11 @@ namespace RAS
             M8128COM = CfgForm.M8128COM;
 
         }
-
+        /// <summary>
+        /// 连接按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             SerialPortConnect();
@@ -805,7 +834,7 @@ namespace RAS
                 M8218MqInit();
                 Thread.Sleep(20);
 
-                //PaintStrat();
+                //PaintStrat();-------绘制功能
 
             }
             catch (Exception ex)
