@@ -178,6 +178,7 @@ namespace RAS
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "结束..........");
         }
 
+        #region 初始化操作
         /// <summary>
         /// LED指示控件初始化
         /// </summary>
@@ -197,6 +198,7 @@ namespace RAS
         {
             LogUI.SetListBox(LogListBox);
         }
+        #endregion
 
         #region 串口操作
         /// <summary>
@@ -775,9 +777,61 @@ namespace RAS
             byte[] byteCmd = Encoding.Default.GetBytes(strCmd);
             M8128SendQueue.Enqueue(byteCmd);
         }
-#endregion
+        #endregion
 
+        #region 力矩平衡操作
+        private void Tq_Sensor_GoToZeroButton_Click(object sender, EventArgs e)
+        {
+            Thread childThread = new Thread(OffSet);
+            childThread.Start();
+        }
+        /// <summary>
+        /// 实现力矩平衡函数
+        /// </summary>
+        private void OffSet()
+        {
+            pictureBox4.Visible = false;
+            Tq_Sensor_GoToZeroButton.Enabled = false;
+            Offset_Fx = 0;
+            Offset_Fy = 0;
+            Offset_Fz = 0;
+            Offset_Tx = 0;
+            Offset_Ty = 0;
+            Offset_Tz = 0;
+            Tq_Sensor_ProgressBar.Value = 0;
+            float result1 = 0, result2 = 0, result3 = 0, result4 = 0, result5 = 0, result6 = 0;
 
+            for (int i = 0; i < 100; i++)
+            {
+                result1 += FTSensor.forceX;
+                result2 += FTSensor.torqueX;
+                result3 += FTSensor.forceY;
+                result4 += FTSensor.torqueY;
+                result5 += FTSensor.forceZ;
+                result6 += FTSensor.torqueZ;
+                Tq_Sensor_ProgressBar.Value = i + 1;
+                Thread.Sleep(40);
+            }
+            Offset_Fx = -result1 / 100.0f;
+            Offset_Fy = -result3 / 100.0f;
+            Offset_Fz = -result5 / 100.0f;
+            Offset_Tx = -result2 / 100.0f;
+            Offset_Ty = -result4 / 100.0f;
+            Offset_Tz = -result6 / 100.0f;
+
+            Thread.Sleep(800);
+
+            pictureBox4.Visible = true;
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Fx：" + Offset_Fx.ToString("0.000") + "；Fy：" + Offset_Fy.ToString("0.000") + "；Fz：" + Offset_Fz.ToString("0.000"));
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Tx：" + Offset_Tx.ToString("0.000") + "；Ty：" + Offset_Ty.ToString("0.000") + "；Tz：" + Offset_Tz.ToString("0.000"));
+
+            //弹窗显示力矩偏执
+            // MessageBox.Show("校准完成！Fx偏置为：" + Offset_Fx.ToString("0.000") + "；Tx的偏置为：" + Offset_Tx.ToString("0.000") + "；Fy的偏置为：" + Offset_Fy.ToString("0.000")+ "；Ty的偏置为：" + Offset_Ty.ToString("0.000") + "；Fz的偏置为：" + Offset_Fz.ToString("0.000") + "；Tz的偏置为：" + Offset_Tz.ToString("0.000") + ".", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Tq_Sensor_GoToZeroButton.Enabled = true;
+
+        }
+        #endregion
 
 
 
@@ -882,53 +936,5 @@ namespace RAS
             else { panel6.Enabled = false; }
         }
 
-        private void Tq_Sensor_GoToZeroButton_Click(object sender, EventArgs e)
-        {
-            Thread childThread = new Thread(OffSet);
-            childThread.Start();
-        }
-        private void OffSet()
-        {
-            pictureBox4.Visible = false;
-            Tq_Sensor_GoToZeroButton.Enabled = false;
-            Offset_Fx = 0;
-            Offset_Fy = 0;
-            Offset_Fz = 0;
-            Offset_Tx = 0;
-            Offset_Ty = 0;
-            Offset_Tz = 0;
-            Tq_Sensor_ProgressBar.Value = 0;
-            float result1 = 0, result2 = 0, result3 = 0, result4 = 0, result5 = 0, result6 = 0;
-
-            for (int i = 0; i < 100; i++)
-            {
-                result1 += FTSensor.forceX;
-                result2 += FTSensor.torqueX;
-                result3 += FTSensor.forceY;
-                result4 += FTSensor.torqueY;
-                result5 += FTSensor.forceZ;
-                result6 += FTSensor.torqueZ;
-                Tq_Sensor_ProgressBar.Value = i + 1;
-                Thread.Sleep(40);
-            }
-            Offset_Fx = -result1 / 100.0f;
-            Offset_Fy = -result3 / 100.0f;
-            Offset_Fz = -result5 / 100.0f;
-            Offset_Tx = -result2 / 100.0f;
-            Offset_Ty = -result4 / 100.0f;
-            Offset_Tz = -result6 / 100.0f;
-
-            Thread.Sleep(800);
-
-            pictureBox4.Visible = true;
-
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Fx：" + Offset_Fx.ToString("0.000") + "；Fy：" + Offset_Fy.ToString("0.000") + "；Fz：" + Offset_Fz.ToString("0.000"));
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Tx：" + Offset_Tx.ToString("0.000") + "；Ty：" + Offset_Ty.ToString("0.000") + "；Tz：" + Offset_Tz.ToString("0.000"));
-
-            // MessageBox.Show("校准完成！Fx偏置为：" + Offset_Fx.ToString("0.000") + "；Tx的偏置为：" + Offset_Tx.ToString("0.000") + "；Fy的偏置为：" + Offset_Fy.ToString("0.000")
-            //     + "；Ty的偏置为：" + Offset_Ty.ToString("0.000") + "；Fz的偏置为：" + Offset_Fz.ToString("0.000") + "；Tz的偏置为：" + Offset_Tz.ToString("0.000") + ".", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Tq_Sensor_GoToZeroButton.Enabled = true;
-            
-        }
     }
 }
