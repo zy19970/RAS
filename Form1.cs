@@ -134,12 +134,12 @@ namespace RAS
 
         /********传感器标定相关参数*************************/
         #region 传感器标定相关参数
-        static public float Offset_Fx = 52.255f;
-        static public float Offset_Fy = -12.779f;
-        static public float Offset_Fz = -50.789f;
-        static public float Offset_Tx = -1.013f;
-        static public float Offset_Ty = -0.752f;
-        static public float Offset_Tz = 0.432f;
+        static public float Offset_Fx = 55.701f;
+        static public float Offset_Fy = -12.738f;
+        static public float Offset_Fz = -52.249f;
+        static public float Offset_Tx = -1.227f;
+        static public float Offset_Ty = -0.677f;
+        static public float Offset_Tz = 0.615f;
 
 
         static public float Offset_Dx = -3.566f;
