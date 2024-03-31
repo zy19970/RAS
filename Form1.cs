@@ -547,7 +547,7 @@ namespace RAS
                     Console.WriteLine("Tx:{0}", BitConverter.ToSingle(M8128RevData, 16) + Offset_Tx);
                 }
                 else
-                { FTSensor.torqueX = BitConverter.ToSingle(M8128RevData, 4) + Offset_Tx; }
+                { FTSensor.torqueX = BitConverter.ToSingle(M8128RevData, 16) + Offset_Tx; }
 
 
                 if ((BitConverter.ToSingle(M8128RevData, 8) + Offset_Fy) > 5000.0f || (BitConverter.ToSingle(M8128RevData, 8) + Offset_Fy) < -5000)
