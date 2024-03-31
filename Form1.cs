@@ -871,8 +871,27 @@ namespace RAS
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
         }
 
+        /// <summary>
+        /// 配置手动调整UI使能按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) { panel2.Enabled = true; }
+            else { panel2.Enabled = false; }
 
+            if (checkBox17.Checked) { panel9.Enabled = true; }
+            else { panel9.Enabled = false; }
 
+            if (checkBox3.Checked) { panel4.Enabled = true; }
+            else { panel4.Enabled = false; }
 
+            if (checkBox4.Checked) { panel5.Enabled = true; }
+            else { panel5.Enabled = false; }
+
+            if (checkBox5.Checked) { panel6.Enabled = true; }
+            else { panel6.Enabled = false; }
+        }
     }
 }

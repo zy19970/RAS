@@ -100,8 +100,8 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button25 = new System.Windows.Forms.Button();
+            this.Tq_Sensor_ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.Tq_Sensor_GoToZeroButton = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.button24 = new System.Windows.Forms.Button();
@@ -644,6 +644,7 @@
             this.checkBox3.TabIndex = 0;
             this.checkBox3.Text = "使能";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // groupBox13
             // 
@@ -714,6 +715,7 @@
             this.checkBox17.TabIndex = 0;
             this.checkBox17.Text = "使能";
             this.checkBox17.UseVisualStyleBackColor = true;
+            this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -803,7 +805,6 @@
             this.panel7.Controls.Add(this.checkBox13);
             this.panel7.Controls.Add(this.checkBox12);
             this.panel7.Controls.Add(this.checkBox10);
-            this.panel7.Enabled = false;
             this.panel7.Location = new System.Drawing.Point(6, 55);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(188, 90);
@@ -903,7 +904,6 @@
             this.panel8.Controls.Add(this.checkBox9);
             this.panel8.Controls.Add(this.checkBox8);
             this.panel8.Controls.Add(this.checkBox7);
-            this.panel8.Enabled = false;
             this.panel8.Location = new System.Drawing.Point(80, 22);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(209, 54);
@@ -960,8 +960,8 @@
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.pictureBox4);
-            this.groupBox9.Controls.Add(this.progressBar1);
-            this.groupBox9.Controls.Add(this.button25);
+            this.groupBox9.Controls.Add(this.Tq_Sensor_ProgressBar);
+            this.groupBox9.Controls.Add(this.Tq_Sensor_GoToZeroButton);
             this.groupBox9.Location = new System.Drawing.Point(7, 256);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(295, 63);
@@ -980,22 +980,22 @@
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Visible = false;
             // 
-            // progressBar1
+            // Tq_Sensor_ProgressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(86, 25);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(170, 26);
-            this.progressBar1.TabIndex = 8;
+            this.Tq_Sensor_ProgressBar.Location = new System.Drawing.Point(86, 25);
+            this.Tq_Sensor_ProgressBar.Name = "Tq_Sensor_ProgressBar";
+            this.Tq_Sensor_ProgressBar.Size = new System.Drawing.Size(170, 26);
+            this.Tq_Sensor_ProgressBar.TabIndex = 8;
             // 
-            // button25
+            // Tq_Sensor_GoToZeroButton
             // 
-            this.button25.Location = new System.Drawing.Point(12, 25);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(68, 26);
-            this.button25.TabIndex = 7;
-            this.button25.Text = "归零";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
+            this.Tq_Sensor_GoToZeroButton.Location = new System.Drawing.Point(12, 25);
+            this.Tq_Sensor_GoToZeroButton.Name = "Tq_Sensor_GoToZeroButton";
+            this.Tq_Sensor_GoToZeroButton.Size = new System.Drawing.Size(68, 26);
+            this.Tq_Sensor_GoToZeroButton.TabIndex = 7;
+            this.Tq_Sensor_GoToZeroButton.Text = "归零";
+            this.Tq_Sensor_GoToZeroButton.UseVisualStyleBackColor = true;
+            this.Tq_Sensor_GoToZeroButton.Click += new System.EventHandler(this.button25_Click);
             // 
             // groupBox8
             // 
@@ -1097,6 +1097,7 @@
             this.checkBox5.TabIndex = 21;
             this.checkBox5.Text = "使能";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // groupBox7
             // 
@@ -1266,6 +1267,7 @@
             this.checkBox4.TabIndex = 1;
             this.checkBox4.Text = "使能";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -1336,6 +1338,7 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "使能";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // tabPage2
             // 
@@ -2182,8 +2185,8 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button Tq_Sensor_GoToZeroButton;
+        private System.Windows.Forms.ProgressBar Tq_Sensor_ProgressBar;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.GroupBox groupBox11;
