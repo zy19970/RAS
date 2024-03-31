@@ -978,7 +978,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 9;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Visible = false;
             // 
             // Tq_Sensor_ProgressBar
             // 
@@ -995,7 +994,7 @@
             this.Tq_Sensor_GoToZeroButton.TabIndex = 7;
             this.Tq_Sensor_GoToZeroButton.Text = "归零";
             this.Tq_Sensor_GoToZeroButton.UseVisualStyleBackColor = true;
-            this.Tq_Sensor_GoToZeroButton.Click += new System.EventHandler(this.button25_Click);
+            this.Tq_Sensor_GoToZeroButton.Click += new System.EventHandler(this.Tq_Sensor_GoToZeroButton_Click);
             // 
             // groupBox8
             // 

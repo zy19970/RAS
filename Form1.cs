@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace RAS
@@ -777,20 +778,9 @@ namespace RAS
 #endregion
 
 
-        private void button17_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button25_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
@@ -874,8 +864,6 @@ namespace RAS
         /// <summary>
         /// 配置手动调整UI使能按钮
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked) { panel2.Enabled = true; }
@@ -892,6 +880,55 @@ namespace RAS
 
             if (checkBox5.Checked) { panel6.Enabled = true; }
             else { panel6.Enabled = false; }
+        }
+
+        private void Tq_Sensor_GoToZeroButton_Click(object sender, EventArgs e)
+        {
+            Thread childThread = new Thread(OffSet);
+            childThread.Start();
+        }
+        private void OffSet()
+        {
+            pictureBox4.Visible = false;
+            Tq_Sensor_GoToZeroButton.Enabled = false;
+            Offset_Fx = 0;
+            Offset_Fy = 0;
+            Offset_Fz = 0;
+            Offset_Tx = 0;
+            Offset_Ty = 0;
+            Offset_Tz = 0;
+            Tq_Sensor_ProgressBar.Value = 0;
+            float result1 = 0, result2 = 0, result3 = 0, result4 = 0, result5 = 0, result6 = 0;
+
+            for (int i = 0; i < 100; i++)
+            {
+                result1 += FTSensor.forceX;
+                result2 += FTSensor.torqueX;
+                result3 += FTSensor.forceY;
+                result4 += FTSensor.torqueY;
+                result5 += FTSensor.forceZ;
+                result6 += FTSensor.torqueZ;
+                Tq_Sensor_ProgressBar.Value = i + 1;
+                Thread.Sleep(40);
+            }
+            Offset_Fx = -result1 / 100.0f;
+            Offset_Fy = -result3 / 100.0f;
+            Offset_Fz = -result5 / 100.0f;
+            Offset_Tx = -result2 / 100.0f;
+            Offset_Ty = -result4 / 100.0f;
+            Offset_Tz = -result6 / 100.0f;
+
+            Thread.Sleep(800);
+
+            pictureBox4.Visible = true;
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Fx：" + Offset_Fx.ToString("0.000") + "；Fy：" + Offset_Fy.ToString("0.000") + "；Fz：" + Offset_Fz.ToString("0.000"));
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "", "", "Tx：" + Offset_Tx.ToString("0.000") + "；Ty：" + Offset_Ty.ToString("0.000") + "；Tz：" + Offset_Tz.ToString("0.000"));
+
+            // MessageBox.Show("校准完成！Fx偏置为：" + Offset_Fx.ToString("0.000") + "；Tx的偏置为：" + Offset_Tx.ToString("0.000") + "；Fy的偏置为：" + Offset_Fy.ToString("0.000")
+            //     + "；Ty的偏置为：" + Offset_Ty.ToString("0.000") + "；Fz的偏置为：" + Offset_Fz.ToString("0.000") + "；Tz的偏置为：" + Offset_Tz.ToString("0.000") + ".", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Tq_Sensor_GoToZeroButton.Enabled = true;
+            
         }
     }
 }
