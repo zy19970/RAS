@@ -162,12 +162,19 @@ namespace RAS
         #endregion
         /************************************************/
 
+        /********配置实时日志相关类*************************/
+        #region 配置实时日志相关类
+        LogListUI LogUI = new LogListUI();//定义实时日志类
+        #endregion
+        /************************************************/
 
         public MainForm()
         {
             InitializeComponent();
+            LogInit();
             LEDInit();
             SetialPortInit();
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "结束..........");
         }
 
         /// <summary>
@@ -179,6 +186,15 @@ namespace RAS
             McuLED.SetPicBox(MCU_LED_PicBox);
             TqLED.SetPicBox(Tq_LED_PicBox) ;
             TrainLED.SetPicBox(Train_LED_PicBox);
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "LED控件", "初始化成功");
+        }
+        /// <summary>
+        /// Log UI控件初始化
+        /// </summary>
+        void LogInit()
+        {
+            LogUI.SetListBox(LogListBox);
         }
 
         #region 串口操作
@@ -193,6 +209,10 @@ namespace RAS
             /********读取串口变量*************************/
             STM32COM = ConfigFile.IniReadValue("serialport", "MCUserial");
             M8128COM = ConfigFile.IniReadValue("serialport", "M8128serial");
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "串口", "单片机串口为"+ STM32COM);
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "串口", "力矩传感器串口为" + M8128COM);
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "串口", "波特率为" + Baud2COM);
 
         }
         /// <summary>
@@ -756,6 +776,7 @@ namespace RAS
         }
 #endregion
 
+
         private void button17_Click(object sender, EventArgs e)
         {
 
@@ -842,5 +863,16 @@ namespace RAS
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
+        }
+
+
+
+
     }
 }
