@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.AngleChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.M8128Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LogListBox = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -85,18 +87,18 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.TZcheckBox = new System.Windows.Forms.CheckBox();
+            this.TYcheckBox = new System.Windows.Forms.CheckBox();
+            this.TXcheckBox = new System.Windows.Forms.CheckBox();
+            this.FZcheckBox = new System.Windows.Forms.CheckBox();
+            this.FYcheckBox = new System.Windows.Forms.CheckBox();
+            this.FXcheckBox = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.AngleZcheckBox = new System.Windows.Forms.CheckBox();
+            this.AngleYcheckBox = new System.Windows.Forms.CheckBox();
+            this.AngleXcheckBox = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -197,11 +199,11 @@
             this.button26 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.LogListBox = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.ChartTimer = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -241,37 +243,50 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chart1
+            // AngleChart
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(663, 20);
-            this.chart1.Name = "chart1";
+            this.AngleChart.ChartAreas.Add(chartArea1);
+            this.AngleChart.Location = new System.Drawing.Point(663, 20);
+            this.AngleChart.Name = "AngleChart";
             series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
+            series1.IsVisibleInLegend = false;
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(609, 218);
-            this.chart1.TabIndex = 3;
-            this.chart1.Text = "chart1";
+            this.AngleChart.Series.Add(series1);
+            this.AngleChart.Size = new System.Drawing.Size(609, 218);
+            this.AngleChart.TabIndex = 3;
+            this.AngleChart.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Position.Auto = false;
+            title1.Position.Height = 5F;
+            title1.Position.Width = 94F;
+            title1.Position.X = 3F;
+            title1.Position.Y = 1F;
+            title1.Text = "Real Time Angle Data";
+            this.AngleChart.Titles.Add(title1);
             // 
-            // chart2
+            // M8128Chart
             // 
             chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(663, 244);
-            this.chart2.Name = "chart2";
+            this.M8128Chart.ChartAreas.Add(chartArea2);
+            this.M8128Chart.Location = new System.Drawing.Point(663, 244);
+            this.M8128Chart.Name = "M8128Chart";
             series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(609, 218);
-            this.chart2.TabIndex = 4;
-            this.chart2.Text = "chart2";
+            this.M8128Chart.Series.Add(series2);
+            this.M8128Chart.Size = new System.Drawing.Size(609, 218);
+            this.M8128Chart.TabIndex = 4;
+            this.M8128Chart.Text = "chart2";
+            title2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Position.Auto = false;
+            title2.Position.Height = 5F;
+            title2.Position.Width = 94F;
+            title2.Position.X = 3F;
+            title2.Position.Y = 1F;
+            title2.Text = "Real Time Torque Data";
+            this.M8128Chart.Titles.Add(title2);
             // 
             // groupBox2
             // 
@@ -283,6 +298,17 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时日志";
+            // 
+            // LogListBox
+            // 
+            this.LogListBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LogListBox.FormattingEnabled = true;
+            this.LogListBox.ItemHeight = 16;
+            this.LogListBox.Location = new System.Drawing.Point(0, 19);
+            this.LogListBox.Name = "LogListBox";
+            this.LogListBox.ScrollAlwaysVisible = true;
+            this.LogListBox.Size = new System.Drawing.Size(609, 164);
+            this.LogListBox.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -799,82 +825,88 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.checkBox16);
-            this.panel7.Controls.Add(this.checkBox15);
-            this.panel7.Controls.Add(this.checkBox14);
-            this.panel7.Controls.Add(this.checkBox13);
-            this.panel7.Controls.Add(this.checkBox12);
-            this.panel7.Controls.Add(this.checkBox10);
+            this.panel7.Controls.Add(this.TZcheckBox);
+            this.panel7.Controls.Add(this.TYcheckBox);
+            this.panel7.Controls.Add(this.TXcheckBox);
+            this.panel7.Controls.Add(this.FZcheckBox);
+            this.panel7.Controls.Add(this.FYcheckBox);
+            this.panel7.Controls.Add(this.FXcheckBox);
             this.panel7.Location = new System.Drawing.Point(6, 55);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(188, 90);
             this.panel7.TabIndex = 6;
             // 
-            // checkBox16
+            // TZcheckBox
             // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Checked = true;
-            this.checkBox16.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox16.Location = new System.Drawing.Point(89, 60);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(87, 18);
-            this.checkBox16.TabIndex = 16;
-            this.checkBox16.Text = "Z 轴力矩";
-            this.checkBox16.UseVisualStyleBackColor = true;
+            this.TZcheckBox.AutoSize = true;
+            this.TZcheckBox.Checked = true;
+            this.TZcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TZcheckBox.ForeColor = System.Drawing.Color.Orange;
+            this.TZcheckBox.Location = new System.Drawing.Point(89, 60);
+            this.TZcheckBox.Name = "TZcheckBox";
+            this.TZcheckBox.Size = new System.Drawing.Size(87, 18);
+            this.TZcheckBox.TabIndex = 16;
+            this.TZcheckBox.Text = "Z 轴力矩";
+            this.TZcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox15
+            // TYcheckBox
             // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Checked = true;
-            this.checkBox15.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox15.Location = new System.Drawing.Point(89, 36);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(87, 18);
-            this.checkBox15.TabIndex = 15;
-            this.checkBox15.Text = "Y 轴力矩";
-            this.checkBox15.UseVisualStyleBackColor = true;
+            this.TYcheckBox.AutoSize = true;
+            this.TYcheckBox.Checked = true;
+            this.TYcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TYcheckBox.ForeColor = System.Drawing.Color.Fuchsia;
+            this.TYcheckBox.Location = new System.Drawing.Point(89, 36);
+            this.TYcheckBox.Name = "TYcheckBox";
+            this.TYcheckBox.Size = new System.Drawing.Size(87, 18);
+            this.TYcheckBox.TabIndex = 15;
+            this.TYcheckBox.Text = "Y 轴力矩";
+            this.TYcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox14
+            // TXcheckBox
             // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Checked = true;
-            this.checkBox14.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox14.Location = new System.Drawing.Point(90, 12);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(87, 18);
-            this.checkBox14.TabIndex = 14;
-            this.checkBox14.Text = "X 轴力矩";
-            this.checkBox14.UseVisualStyleBackColor = true;
+            this.TXcheckBox.AutoSize = true;
+            this.TXcheckBox.Checked = true;
+            this.TXcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TXcheckBox.ForeColor = System.Drawing.Color.Green;
+            this.TXcheckBox.Location = new System.Drawing.Point(90, 12);
+            this.TXcheckBox.Name = "TXcheckBox";
+            this.TXcheckBox.Size = new System.Drawing.Size(87, 18);
+            this.TXcheckBox.TabIndex = 14;
+            this.TXcheckBox.Text = "X 轴力矩";
+            this.TXcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox13
+            // FZcheckBox
             // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(11, 60);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(72, 18);
-            this.checkBox13.TabIndex = 13;
-            this.checkBox13.Text = "Z 轴力";
-            this.checkBox13.UseVisualStyleBackColor = true;
+            this.FZcheckBox.AutoSize = true;
+            this.FZcheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.FZcheckBox.Location = new System.Drawing.Point(11, 60);
+            this.FZcheckBox.Name = "FZcheckBox";
+            this.FZcheckBox.Size = new System.Drawing.Size(72, 18);
+            this.FZcheckBox.TabIndex = 13;
+            this.FZcheckBox.Text = "Z 轴力";
+            this.FZcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // FYcheckBox
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(11, 36);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(72, 18);
-            this.checkBox12.TabIndex = 12;
-            this.checkBox12.Text = "Y 轴力";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.FYcheckBox.AutoSize = true;
+            this.FYcheckBox.ForeColor = System.Drawing.Color.Purple;
+            this.FYcheckBox.Location = new System.Drawing.Point(11, 36);
+            this.FYcheckBox.Name = "FYcheckBox";
+            this.FYcheckBox.Size = new System.Drawing.Size(72, 18);
+            this.FYcheckBox.TabIndex = 12;
+            this.FYcheckBox.Text = "Y 轴力";
+            this.FYcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox10
+            // FXcheckBox
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(11, 12);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(72, 18);
-            this.checkBox10.TabIndex = 11;
-            this.checkBox10.Text = "X 轴力";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.FXcheckBox.AutoSize = true;
+            this.FXcheckBox.ForeColor = System.Drawing.Color.Red;
+            this.FXcheckBox.Location = new System.Drawing.Point(11, 12);
+            this.FXcheckBox.Name = "FXcheckBox";
+            this.FXcheckBox.Size = new System.Drawing.Size(72, 18);
+            this.FXcheckBox.TabIndex = 11;
+            this.FXcheckBox.Text = "X 轴力";
+            this.FXcheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox11
             // 
@@ -901,49 +933,52 @@
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.checkBox9);
-            this.panel8.Controls.Add(this.checkBox8);
-            this.panel8.Controls.Add(this.checkBox7);
+            this.panel8.Controls.Add(this.AngleZcheckBox);
+            this.panel8.Controls.Add(this.AngleYcheckBox);
+            this.panel8.Controls.Add(this.AngleXcheckBox);
             this.panel8.Location = new System.Drawing.Point(80, 22);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(209, 54);
             this.panel8.TabIndex = 3;
             // 
-            // checkBox9
+            // AngleZcheckBox
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Checked = true;
-            this.checkBox9.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox9.Location = new System.Drawing.Point(139, 18);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(57, 18);
-            this.checkBox9.TabIndex = 8;
-            this.checkBox9.Text = "Z 轴";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.AngleZcheckBox.AutoSize = true;
+            this.AngleZcheckBox.Checked = true;
+            this.AngleZcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AngleZcheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.AngleZcheckBox.Location = new System.Drawing.Point(139, 18);
+            this.AngleZcheckBox.Name = "AngleZcheckBox";
+            this.AngleZcheckBox.Size = new System.Drawing.Size(57, 18);
+            this.AngleZcheckBox.TabIndex = 8;
+            this.AngleZcheckBox.Text = "Z 轴";
+            this.AngleZcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // AngleYcheckBox
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Checked = true;
-            this.checkBox8.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox8.Location = new System.Drawing.Point(76, 18);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(57, 18);
-            this.checkBox8.TabIndex = 7;
-            this.checkBox8.Text = "Y 轴";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.AngleYcheckBox.AutoSize = true;
+            this.AngleYcheckBox.Checked = true;
+            this.AngleYcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AngleYcheckBox.ForeColor = System.Drawing.Color.Purple;
+            this.AngleYcheckBox.Location = new System.Drawing.Point(76, 18);
+            this.AngleYcheckBox.Name = "AngleYcheckBox";
+            this.AngleYcheckBox.Size = new System.Drawing.Size(57, 18);
+            this.AngleYcheckBox.TabIndex = 7;
+            this.AngleYcheckBox.Text = "Y 轴";
+            this.AngleYcheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // AngleXcheckBox
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Checked = true;
-            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox7.Location = new System.Drawing.Point(13, 18);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(57, 18);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "X 轴";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.AngleXcheckBox.AutoSize = true;
+            this.AngleXcheckBox.Checked = true;
+            this.AngleXcheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AngleXcheckBox.ForeColor = System.Drawing.Color.Red;
+            this.AngleXcheckBox.Location = new System.Drawing.Point(13, 18);
+            this.AngleXcheckBox.Name = "AngleXcheckBox";
+            this.AngleXcheckBox.Size = new System.Drawing.Size(57, 18);
+            this.AngleXcheckBox.TabIndex = 6;
+            this.AngleXcheckBox.Text = "X 轴";
+            this.AngleXcheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox6
             // 
@@ -2039,17 +2074,6 @@
             this.textBox11.Text = "10";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // LogListBox
-            // 
-            this.LogListBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LogListBox.FormattingEnabled = true;
-            this.LogListBox.ItemHeight = 16;
-            this.LogListBox.Location = new System.Drawing.Point(0, 19);
-            this.LogListBox.Name = "LogListBox";
-            this.LogListBox.ScrollAlwaysVisible = true;
-            this.LogListBox.Size = new System.Drawing.Size(609, 148);
-            this.LogListBox.TabIndex = 0;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(381, 20);
@@ -2069,6 +2093,11 @@
             this.button4.Text = "测试2";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // ChartTimer
+            // 
+            this.ChartTimer.Interval = 120;
+            this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2085,16 +2114,16 @@
             this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.M8128Chart);
+            this.Controls.Add(this.AngleChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "并联踝康复机器人控制系统";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -2163,8 +2192,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart AngleChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart M8128Chart;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button1;
@@ -2247,16 +2276,16 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.CheckBox checkBox15;
-        private System.Windows.Forms.CheckBox checkBox14;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox TZcheckBox;
+        private System.Windows.Forms.CheckBox TYcheckBox;
+        private System.Windows.Forms.CheckBox TXcheckBox;
+        private System.Windows.Forms.CheckBox FZcheckBox;
+        private System.Windows.Forms.CheckBox FYcheckBox;
+        private System.Windows.Forms.CheckBox FXcheckBox;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox AngleZcheckBox;
+        private System.Windows.Forms.CheckBox AngleYcheckBox;
+        private System.Windows.Forms.CheckBox AngleXcheckBox;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.TextBox textBox7;
@@ -2328,6 +2357,7 @@
         private System.Windows.Forms.ListBox LogListBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Timer ChartTimer;
     }
 }
 

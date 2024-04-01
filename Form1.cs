@@ -17,7 +17,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace RAS
@@ -175,6 +177,7 @@ namespace RAS
             LogInit();
             LEDInit();
             SetialPortInit();
+            ChartInit();
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "结束..........");
         }
 
@@ -833,7 +836,284 @@ namespace RAS
         }
         #endregion
 
+        #region 图表绘制
+        /// <summary>
+        /// 图表初始化函数
+        /// </summary>
+        private void ChartInit()
+        {
+            //AngleChart.Titles.Add("Real Time Angle Data");
 
+            AngleChart.Series.Clear();
+
+            Series seriesX = new Series("X");
+            seriesX.ChartArea = "ChartArea1";
+            seriesX.Color = System.Drawing.Color.Red;
+            AngleChart.Series.Add(seriesX);
+
+            Series seriesY = new Series("Y");
+            seriesY.ChartArea = "ChartArea1";
+            seriesY.Color = System.Drawing.Color.Purple;
+            AngleChart.Series.Add(seriesY);
+
+            Series seriesZ = new Series("Z");
+            seriesZ.ChartArea = "ChartArea1";
+            seriesZ.Color = System.Drawing.Color.Navy;
+            AngleChart.Series.Add(seriesZ);
+
+            for (int i = 0; i < 3; i++)
+            {
+                AngleChart.Series[i].ChartType = SeriesChartType.Spline;
+                AngleChart.Series[i].BorderWidth = 2; //线条粗细
+            }
+
+            //添加的两组Test数据
+            List<int> txData2 = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            List<int> tyData2 = new List<int>() { 9, 6, 7, 4, 5, 4 };
+            List<int> txData3 = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            List<int> tyData3 = new List<int>() { 3, 8, 2, 5, 4, 9 };
+            AngleChart.Series[0].Points.DataBindXY(txData2, tyData2); //添加数据
+            AngleChart.Series[1].Points.DataBindXY(txData3, tyData3); //添加数据
+
+            //M8128Chart.Titles.Add("Real Time Torque Data");
+
+            M8128Chart.Series.Clear();
+
+            Series seriesFX = new Series("Fx");
+            seriesFX.ChartArea = "ChartArea1";
+            seriesFX.Color = System.Drawing.Color.Red;
+            M8128Chart.Series.Add(seriesFX);
+
+            Series seriesFY = new Series("Fy");
+            seriesFY.ChartArea = "ChartArea1";
+            seriesFY.Color = System.Drawing.Color.Purple;
+            M8128Chart.Series.Add(seriesFY);
+
+            Series seriesFZ = new Series("Fz");
+            seriesFZ.ChartArea = "ChartArea1";
+            seriesFZ.Color = System.Drawing.Color.Navy;
+            M8128Chart.Series.Add(seriesFZ);
+
+            Series seriesTX = new Series("Tx");
+            seriesTX.ChartArea = "ChartArea1";
+            seriesTX.Color = System.Drawing.Color.Green;
+            M8128Chart.Series.Add(seriesTX);
+
+            Series seriesTY = new Series("Ty");
+            seriesTY.ChartArea = "ChartArea1";
+            seriesTY.Color = System.Drawing.Color.Fuchsia;
+            M8128Chart.Series.Add(seriesTY);
+
+            Series seriesTZ = new Series("Tz");
+            seriesTZ.ChartArea = "ChartArea1";
+            seriesTZ.Color = System.Drawing.Color.Orange;
+            M8128Chart.Series.Add(seriesTZ);
+
+
+            for (int i = 0; i < 6; i++)
+            {
+                M8128Chart.Series[i].ChartType = SeriesChartType.Spline;
+                M8128Chart.Series[i].BorderWidth = 2; //线条粗细
+            }
+
+            M8128Chart.Series[4].Points.DataBindXY(txData2, tyData2); //添加数据
+            M8128Chart.Series[5].Points.DataBindXY(txData3, tyData3); //添加数据
+
+        }
+
+        /// <summary>
+        /// 角度曲线更新函数
+        /// </summary>
+        private void UpdateAngleQueue()
+        {
+
+            int realpoint = 0;
+            if (AngleXcheckBox.Checked && XDegreedata.Count > realpoint) realpoint = XDegreedata.Count;
+            if (AngleYcheckBox.Checked && YDegreedata.Count > realpoint) realpoint = YDegreedata.Count;
+            if (AngleZcheckBox.Checked && ZDegreedata.Count > realpoint) realpoint = ZDegreedata.Count;
+
+            lock (ChartLock)
+            {
+                if (realpoint > NumOfPoint)
+                {
+                    XDegreedata.Dequeue();
+                    YDegreedata.Dequeue();
+                    ZDegreedata.Dequeue();
+                }
+
+
+                lock (STMLock)
+                {
+                    XDegreedata.Enqueue(DegreeSensor.degreeX);
+                    YDegreedata.Enqueue(DegreeSensor.degreeY);
+                    //YDegreedata.Enqueue(RealDegree);
+                    ZDegreedata.Enqueue(DegreeSensor.degreeZ);
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    AngleChart.Series[i].Points.Clear();
+                }
+
+                for (int i = 0; i < XDegreedata.Count; i++)
+                {
+                    if (AngleXcheckBox.Checked) AngleChart.Series[0].Points.AddXY((i + 1), XDegreedata.ElementAt(i));
+                    if (AngleYcheckBox.Checked) AngleChart.Series[1].Points.AddXY((i + 1), YDegreedata.ElementAt(i));
+                    if (AngleZcheckBox.Checked) AngleChart.Series[2].Points.AddXY((i + 1), ZDegreedata.ElementAt(i));
+                }
+            }
+        }
+        /// <summary>
+        /// 角度曲线绘制函数
+        /// </summary>
+        private void PaintAngle()
+        {
+
+
+
+            AngleIsUpdate = false;
+
+            for (int i = 0; i < 3; i++)
+            {
+                AngleChart.Series[i].Points.Clear();
+            }
+            lock (ChartLock)
+            {
+                List<double> a = new List<double>();
+                a = XDegreedata.ToList();
+                Queue<double> b = new Queue<double>(NumOfPoint);
+                Queue<double> c = new Queue<double>(NumOfPoint);
+                for (int i = 0; i < a.Count; i++)
+                {
+                    if (AngleXcheckBox.Checked) AngleChart.Series[0].Points.AddXY((i + 1), a.ElementAt(i));
+                    //if (AngleYcheckBox.Checked) AngleChart.Series[1].Points.AddXY((i + 1), b.ElementAt(i));
+                    //if (AngleZcheckBox.Checked) AngleChart.Series[2].Points.AddXY((i + 1), c.ElementAt(i));
+                }
+            }
+        }
+        /// <summary>
+        /// 六维曲线更新函数
+        /// </summary>
+        private void UpdateTorqeQueue()
+        {
+            int realpoint = 0;
+            if (FXcheckBox.Checked && XFdata.Count > realpoint) realpoint = XFdata.Count;
+            if (FYcheckBox.Checked && YFdata.Count > realpoint) realpoint = YFdata.Count;
+            if (FZcheckBox.Checked && ZFdata.Count > realpoint) realpoint = ZFdata.Count;
+            if (TXcheckBox.Checked && XTdata.Count > realpoint) realpoint = XTdata.Count;
+            if (TYcheckBox.Checked && YTdata.Count > realpoint) realpoint = YTdata.Count;
+            if (TZcheckBox.Checked && ZTdata.Count > realpoint) realpoint = ZTdata.Count;
+
+            if (realpoint > NumOfPoint)
+            {
+                XFdata.Dequeue();
+                YFdata.Dequeue();
+                ZFdata.Dequeue();
+                XTdata.Dequeue();
+                YTdata.Dequeue();
+                ZTdata.Dequeue();
+            }
+            lock (M8128Lock)
+            {
+                XFdata.Enqueue(FTSensor.forceX);
+                XTdata.Enqueue(FTSensor.torqueX);
+                YFdata.Enqueue(FTSensor.forceY);
+                YTdata.Enqueue(FTSensor.torqueY);
+                ZFdata.Enqueue(FTSensor.forceZ);
+                ZTdata.Enqueue(FTSensor.torqueZ);
+
+
+            }
+            PaintTorqe();
+
+        }
+        /// <summary>TXcheckBox
+        /// 六维曲线绘制函数
+        /// </summary>
+        private void PaintTorqe()
+        {
+            TorqeIsUpdate = false;
+
+            for (int i = 0; i < 6; i++)
+            {
+                M8128Chart.Series[i].Points.Clear();
+            }
+            for (int i = 0; i < XTdata.Count; i++)
+            {
+                if (FXcheckBox.Checked) M8128Chart.Series[0].Points.AddXY((i + 1), XFdata.ElementAt(i));
+
+                if (FYcheckBox.Checked) M8128Chart.Series[1].Points.AddXY((i + 1), YFdata.ElementAt(i));
+
+                if (FZcheckBox.Checked) M8128Chart.Series[2].Points.AddXY((i + 1), ZFdata.ElementAt(i));
+
+                if (TXcheckBox.Checked) M8128Chart.Series[3].Points.AddXY((i + 1), XTdata.ElementAt(i));
+
+                if (TYcheckBox.Checked) M8128Chart.Series[4].Points.AddXY((i + 1), YTdata.ElementAt(i));
+
+                if (TZcheckBox.Checked) M8128Chart.Series[5].Points.AddXY((i + 1), ZTdata.ElementAt(i));
+            }
+
+
+        }
+        /// <summary>
+        /// 开始绘图
+        /// </summary>
+        private void PaintStrat()
+        {
+            IsPainting = true;
+            //Thread mythread = new Thread(PaintThread);
+            //mythread.Start();
+            ChartTimer.Start();
+        }
+        /// <summary>
+        /// 结束绘图
+        /// </summary>
+        private void PaintStop()
+        {
+            IsPainting = false;
+            ChartTimer.Stop();
+        }
+
+        private void PaintThread()
+        {
+            while (IsPainting)
+            {
+                //if (AngleIsUpdate)
+                //{
+                UpdateAngleQueue();
+                //Console.WriteLine("Angle is OK;");
+                //}
+                for (int i = 0; i < 50; i++)
+                {
+                    if (IsPainting)
+                        Thread.Sleep(1);
+                }
+                if (TorqeIsUpdate)
+                {
+                    // UpdateTorqeQueue();
+                    //Console.WriteLine("Tq is OK;");
+                }
+                for (int i = 0; i < 50; i++)
+                {
+                    if (IsPainting)
+                        Thread.Sleep(1);
+                }
+            }
+            if (!IsPainting)
+            {
+                Thread.Sleep(100);
+                Thread.CurrentThread.Interrupt();
+                return;
+            }
+
+        }
+        private void ChartTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateAngleQueue();
+            UpdateTorqeQueue();
+            //Console.WriteLine(DateTime.Now.ToLocalTime().ToString());
+        }
+        #endregion
 
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -899,7 +1179,7 @@ namespace RAS
                 M8218MqInit();
                 Thread.Sleep(20);
 
-                //PaintStrat();-------绘制功能
+                PaintStrat();
 
             }
             catch (Exception ex)
