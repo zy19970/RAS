@@ -171,6 +171,9 @@ namespace RAS
         #endregion
         /************************************************/
 
+        ManualAdjustment Ma = new ManualAdjustment();
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -178,6 +181,7 @@ namespace RAS
             LEDInit();
             SetialPortInit();
             ChartInit();
+            ManualInit();
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "结束..........");
         }
 
@@ -200,6 +204,11 @@ namespace RAS
         void LogInit()
         {
             LogUI.SetListBox(LogListBox);
+        }
+
+        void ManualInit()
+        {
+            Ma.SetHDTDriver(HDTX,HDTY,HDTZ);
         }
         #endregion
 
@@ -381,14 +390,15 @@ namespace RAS
                     STMRevData[RevNum] = RevData;
                     RevNum++;
                 }
-                if (!FirstIsOk && RevData == 0x11)
+                else if (!FirstIsOk && RevData == 0x11)
                 {
                     FirstIsOk = true;
                 }
-                if (FirstIsOk && RevData == 0xFF && !HeadIsOK)
+                else if (FirstIsOk && RevData == 0xFF && !HeadIsOK)
                 {
                     HeadIsOK = true;
                 }
+                else { return; }
             }
             lock (STMLock)
             {
@@ -518,10 +528,11 @@ namespace RAS
                     M8128RevData[RevNum] = RevData;
                     RevNum++;
                 }
-                if (RevData == 0x55)
+                else if (RevData == 0x55)
                 {
                     HeadIsOK = true;
                 }
+                else { return; }
 
             }
 
@@ -1216,5 +1227,9 @@ namespace RAS
             else { panel6.Enabled = false; }
         }
 
+        private void button24_Click(object sender, EventArgs e)
+        {
+            Ma.GoToPoint(Convert.ToInt32(textBox5.Text), Convert.ToInt32(textBox6.Text), Convert.ToInt32(textBox7.Text));
+        }
     }
 }

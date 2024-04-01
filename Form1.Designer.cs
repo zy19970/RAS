@@ -1066,6 +1066,7 @@
             this.button24.TabIndex = 29;
             this.button24.Text = "下发指令";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // textBox7
             // 
@@ -2095,7 +2096,6 @@
             // 
             // ChartTimer
             // 
-            this.ChartTimer.Interval = 120;
             this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
             // 
             // MainForm
