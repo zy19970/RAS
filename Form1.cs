@@ -1155,106 +1155,7 @@ namespace RAS
         }
         #endregion
 
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        /// <summary>
-        /// 唤起配置页面
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void open_configform_button_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            ConfigForm CfgForm = new ConfigForm();
-            CfgForm.ShowDialog();
-            this.Show();
-
-
-            if (!CfgForm.isFileChanged)
-            {
-                Console.WriteLine("配置文件未修改.");
-                return;
-            }
-
-            //此处添加代码，配置完毕重读重要变量
-            STM32COM = CfgForm.STM32COM;
-            M8128COM = CfgForm.M8128COM;
-
-        }
-        /// <summary>
-        /// 连接按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConnectButton_Click(object sender, EventArgs e)
-        {
-            SerialPortConnect();
-            try
-            {
-                if (STMSendMsgThread.IsAlive && STMSerial.IsOpen)
-                {
-                    McuLED.On();
-                    if (M8128SendMsgThread.IsAlive && M8128Serial.IsOpen)
-                    {
-                        TqLED.On();
-                    }
-                    else
-                    {
-                        TqLED.Error();
-                        return;
-                    }
-                }
-                else
-                {
-                    McuLED.Error();
-                    return;
-                }
-
-                if (Cnh.Strat()) { CanLED.On(); }
-                else { CanLED.Error(); }
-
-                M8218MqInit();
-                Thread.Sleep(20);
-
-                PaintStrat();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
-        }
-
-        /// <summary>
-        /// 配置手动调整UI使能按钮
-        /// </summary>
-        private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked) { panel2.Enabled = true; }
-            else { panel2.Enabled = false; }
-
-            if (checkBox17.Checked) { panel9.Enabled = true; }
-            else { panel9.Enabled = false; }
-
-            if (checkBox3.Checked) { panel4.Enabled = true; }
-            else { panel4.Enabled = false; }
-
-            if (checkBox4.Checked) { panel5.Enabled = true; }
-            else { panel5.Enabled = false; }
-
-            if (checkBox5.Checked) { panel6.Enabled = true; }
-            else { panel6.Enabled = false; }
-        }
+        #region 手动操作
         /// <summary>
         /// 手动运动目标位置
         /// </summary>
@@ -1390,5 +1291,107 @@ namespace RAS
         {
             Ma.GoToZero();
         }
+        #endregion
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 唤起配置页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void open_configform_button_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ConfigForm CfgForm = new ConfigForm();
+            CfgForm.ShowDialog();
+            this.Show();
+
+
+            if (!CfgForm.isFileChanged)
+            {
+                Console.WriteLine("配置文件未修改.");
+                return;
+            }
+
+            //此处添加代码，配置完毕重读重要变量
+            STM32COM = CfgForm.STM32COM;
+            M8128COM = CfgForm.M8128COM;
+
+        }
+        /// <summary>
+        /// 连接按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConnectButton_Click(object sender, EventArgs e)
+        {
+            SerialPortConnect();
+            try
+            {
+                if (STMSendMsgThread.IsAlive && STMSerial.IsOpen)
+                {
+                    McuLED.On();
+                    if (M8128SendMsgThread.IsAlive && M8128Serial.IsOpen)
+                    {
+                        TqLED.On();
+                    }
+                    else
+                    {
+                        TqLED.Error();
+                        return;
+                    }
+                }
+                else
+                {
+                    McuLED.Error();
+                    return;
+                }
+
+                if (Cnh.Strat()) { CanLED.On(); }
+                else { CanLED.Error(); }
+
+                M8218MqInit();
+                Thread.Sleep(20);
+
+                PaintStrat();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
+        }
+
+        /// <summary>
+        /// 配置手动调整UI使能按钮
+        /// </summary>
+        private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) { panel2.Enabled = true; }
+            else { panel2.Enabled = false; }
+
+            if (checkBox17.Checked) { panel9.Enabled = true; }
+            else { panel9.Enabled = false; }
+
+            if (checkBox3.Checked) { panel4.Enabled = true; }
+            else { panel4.Enabled = false; }
+
+            if (checkBox4.Checked) { panel5.Enabled = true; }
+            else { panel5.Enabled = false; }
+
+            if (checkBox5.Checked) { panel6.Enabled = true; }
+            else { panel6.Enabled = false; }
+        }
+        
     }
 }
