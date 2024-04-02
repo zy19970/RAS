@@ -202,6 +202,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.ChartTimer = new System.Windows.Forms.Timer(this.components);
+            this.label33 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -642,6 +643,7 @@
             this.button13.TabIndex = 7;
             this.button13.Text = "停";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // button14
             // 
@@ -651,6 +653,7 @@
             this.button14.TabIndex = 6;
             this.button14.Text = "-";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button15
             // 
@@ -660,6 +663,7 @@
             this.button15.TabIndex = 5;
             this.button15.Text = "+";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // checkBox3
             // 
@@ -713,6 +717,7 @@
             this.button27.TabIndex = 7;
             this.button27.Text = "停";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // button29
             // 
@@ -722,6 +727,7 @@
             this.button29.TabIndex = 6;
             this.button29.Text = "-";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // button30
             // 
@@ -731,6 +737,7 @@
             this.button30.TabIndex = 5;
             this.button30.Text = "+";
             this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // checkBox17
             // 
@@ -1136,6 +1143,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.label33);
             this.groupBox7.Controls.Add(this.panel5);
             this.groupBox7.Controls.Add(this.checkBox4);
             this.groupBox7.Location = new System.Drawing.Point(327, 12);
@@ -1174,6 +1182,7 @@
             this.button23.TabIndex = 27;
             this.button23.Text = "回零";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
             // 
             // label3
             // 
@@ -1213,6 +1222,7 @@
             this.button21.TabIndex = 23;
             this.button21.Text = "外翻";
             this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // button22
             // 
@@ -1225,6 +1235,7 @@
             this.button22.TabIndex = 22;
             this.button22.Text = "内翻";
             this.button22.UseVisualStyleBackColor = false;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // button19
             // 
@@ -1237,6 +1248,7 @@
             this.button19.TabIndex = 21;
             this.button19.Text = "外展";
             this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // button20
             // 
@@ -1249,6 +1261,7 @@
             this.button20.TabIndex = 20;
             this.button20.Text = "内收";
             this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button18
             // 
@@ -1261,6 +1274,7 @@
             this.button18.TabIndex = 19;
             this.button18.Text = "跖屈";
             this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button17
             // 
@@ -1273,6 +1287,7 @@
             this.button17.TabIndex = 18;
             this.button17.Text = "背伸";
             this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button16
             // 
@@ -1283,6 +1298,7 @@
             this.button16.TabIndex = 17;
             this.button16.Text = "停止";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // textBox4
             // 
@@ -1345,6 +1361,7 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "停";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // button8
             // 
@@ -1354,6 +1371,7 @@
             this.button8.TabIndex = 6;
             this.button8.Text = "-";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -1363,6 +1381,7 @@
             this.button7.TabIndex = 5;
             this.button7.Text = "+";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // checkBox1
             // 
@@ -2098,6 +2117,16 @@
             // 
             this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label33.Location = new System.Drawing.Point(97, 25);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(90, 14);
+            this.label33.TabIndex = 17;
+            this.label33.Text = "*右脚为参考";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2358,6 +2387,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Timer ChartTimer;
+        private System.Windows.Forms.Label label33;
     }
 }
 

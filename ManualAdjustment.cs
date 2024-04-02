@@ -88,7 +88,7 @@ namespace RAS
 
             HDTX.SetVelocity(0);
             HDTY.SetVelocity(0);
-            HDTZ.SetVelocity(setValueThd / 3);
+            HDTZ.SetVelocity(-setValueThd / 6);
         }
         /// <summary>
         /// 机器人执行内翻外翻操作
@@ -114,7 +114,7 @@ namespace RAS
             HDTY.VelocityInit();
             HDTZ.VelocityInit();
 
-            HDTX.SetVelocity(setValueThd);
+            HDTX.SetVelocity(-setValueThd);
             HDTY.SetVelocity(0);
             HDTZ.SetVelocity(0);
         }
@@ -129,7 +129,7 @@ namespace RAS
             HDTZ.VelocityInit();
 
             HDTX.SetVelocity(0);
-            HDTY.SetVelocity(setValueThd);
+            HDTY.SetVelocity(-setValueThd);
             HDTZ.SetVelocity(0);
         }
         /// <summary>
@@ -144,7 +144,18 @@ namespace RAS
 
             HDTX.SetVelocity(0);
             HDTY.SetVelocity(0);
-            HDTZ.SetVelocity(setValueThd / 3);
+            HDTZ.SetVelocity(-setValueThd / 6);
+        }
+
+        public void Manual_Stop()
+        {
+            HDTX.VelocityInit();
+            HDTY.VelocityInit();
+            HDTZ.VelocityInit();
+
+            HDTX.SetVelocity(0);
+            HDTY.SetVelocity(0);
+            HDTZ.SetVelocity(0);
         }
     }
 }

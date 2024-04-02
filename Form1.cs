@@ -4,6 +4,8 @@
 //#define qDEBUG_ANGLE  //输出实时获取的位姿
 //#define qDEBUG_TQ     //输出实时获取的力矩
 
+//#define ENCODER_OFFSET //使能编码器标定
+
 
 using System;
 using System.Collections;
@@ -144,9 +146,9 @@ namespace RAS
         static public float Offset_Tz = 0.615f;
 
 
-        static public float Offset_Dx = -3.566f;
-        static public float Offset_Dy = 4.203f;
-        static public float Offset_Dz = 4.071f;
+        static public float Offset_Dx = -3.634f;
+        static public float Offset_Dy = 5.144f;
+        static public float Offset_Dz = 1.759f;
         #endregion
         /************************************************/
 
@@ -402,12 +404,19 @@ namespace RAS
             }
             lock (STMLock)
             {
-                DegreeSensor.degreeX = BitConverter.ToSingle(STMRevData, 1);
+                //DegreeSensor.degreeX = BitConverter.ToSingle(STMRevData, 1);
+                //DegreeXQueue.Enqueue(DegreeSensor.degreeX);
+                //DegreeSensor.degreeY = BitConverter.ToSingle(STMRevData, 5);
+                //DegreeYQueue.Enqueue(DegreeSensor.degreeY);
+                //DegreeSensor.degreeZ = BitConverter.ToSingle(STMRevData, 9);
+                //DegreeZQueue.Enqueue(DegreeSensor.degreeZ);
+                //AngleIsUpdate = true;
+                DegreeSensor.degreeX = BitConverter.ToSingle(STMRevData, 1) + Offset_Dx;
                 DegreeXQueue.Enqueue(DegreeSensor.degreeX);
-                DegreeSensor.degreeY = BitConverter.ToSingle(STMRevData, 5);
-                DegreeYQueue.Enqueue(DegreeSensor.degreeY);
-                DegreeSensor.degreeZ = BitConverter.ToSingle(STMRevData, 9);
-                DegreeZQueue.Enqueue(DegreeSensor.degreeZ);
+                DegreeSensor.degreeY = BitConverter.ToSingle(STMRevData, 5) + Offset_Dy;
+                DegreeYQueue.Enqueue(-DegreeSensor.degreeY);
+                DegreeSensor.degreeZ = BitConverter.ToSingle(STMRevData, 9) + Offset_Dz;
+                DegreeZQueue.Enqueue(-DegreeSensor.degreeZ);
                 AngleIsUpdate = true;
             }
 #if DEBUG && qDEBUG_ANGLE
@@ -812,9 +821,16 @@ namespace RAS
             Offset_Tx = 0;
             Offset_Ty = 0;
             Offset_Tz = 0;
+#if ENCODER_OFFSET
+            Offset_Dx = 0;
+            Offset_Dy = 0;
+            Offset_Dz=0;
+#endif
             Tq_Sensor_ProgressBar.Value = 0;
             float result1 = 0, result2 = 0, result3 = 0, result4 = 0, result5 = 0, result6 = 0;
-
+#if ENCODER_OFFSET
+            float a1 = 0;float a2 = 0;float a3 = 0;
+#endif
             for (int i = 0; i < 100; i++)
             {
                 result1 += FTSensor.forceX;
@@ -823,6 +839,11 @@ namespace RAS
                 result4 += FTSensor.torqueY;
                 result5 += FTSensor.forceZ;
                 result6 += FTSensor.torqueZ;
+#if ENCODER_OFFSET
+                a1 += DegreeSensor.degreeX;
+                a2 += DegreeSensor.degreeY;
+                a3 += DegreeSensor.degreeZ;
+#endif
                 Tq_Sensor_ProgressBar.Value = i + 1;
                 Thread.Sleep(40);
             }
@@ -832,7 +853,11 @@ namespace RAS
             Offset_Tx = -result2 / 100.0f;
             Offset_Ty = -result4 / 100.0f;
             Offset_Tz = -result6 / 100.0f;
-
+#if ENCODER_OFFSET
+            Offset_Dx = -a1 / 100.0f;
+            Offset_Dy = -a2 / 100.0f;
+            Offset_Dz = -a3 / 100.0f;
+#endif
             Thread.Sleep(800);
 
             pictureBox4.Visible = true;
@@ -842,10 +867,14 @@ namespace RAS
 
             //弹窗显示力矩偏执
             // MessageBox.Show("校准完成！Fx偏置为：" + Offset_Fx.ToString("0.000") + "；Tx的偏置为：" + Offset_Tx.ToString("0.000") + "；Fy的偏置为：" + Offset_Fy.ToString("0.000")+ "；Ty的偏置为：" + Offset_Ty.ToString("0.000") + "；Fz的偏置为：" + Offset_Fz.ToString("0.000") + "；Tz的偏置为：" + Offset_Tz.ToString("0.000") + ".", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+#if ENCODER_OFFSET
+            MessageBox.Show("校准完成！Ax偏置为：" + Offset_Dx.ToString("0.000") + "；Ay的偏置为：" + Offset_Dy.ToString("0.000") + "；Az的偏置为：" + Offset_Dz.ToString("0.000")+".", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+#endif
+
             Tq_Sensor_GoToZeroButton.Enabled = true;
 
         }
-        #endregion
+#endregion
 
         #region 图表绘制
         /// <summary>
@@ -1226,10 +1255,140 @@ namespace RAS
             if (checkBox5.Checked) { panel6.Enabled = true; }
             else { panel6.Enabled = false; }
         }
-
+        /// <summary>
+        /// 手动运动目标位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button24_Click(object sender, EventArgs e)
         {
             Ma.GoToPoint(Convert.ToInt32(textBox5.Text), Convert.ToInt32(textBox6.Text), Convert.ToInt32(textBox7.Text));
+        }
+        /// <summary>
+        /// 左侧推杆(受试者角度)伸长
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_PushRod_Left(Convert.ToInt32(textBox1.Text));
+        }
+        /// <summary>
+        /// 左侧推杆(受试者角度)缩短
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_PushRod_Left(-Convert.ToInt32(textBox1.Text));
+        }
+        /// <summary>
+        /// 停止手动运动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PushRod_Stop(object sender, EventArgs e)
+        {
+            Ma.Manual_Stop();
+        }
+        /// <summary>
+        /// 右侧推杆(受试者角度)伸长
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button30_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_PushRod_Right(Convert.ToInt32(textBox13.Text));
+        }
+        /// <summary>
+        /// 右侧推杆(受试者角度)缩短
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button29_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_PushRod_Right(-Convert.ToInt32(textBox13.Text));
+        }
+        /// <summary>
+        /// 底部电机正转
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button15_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_Motor_Buttom(Convert.ToInt32(textBox3.Text));
+        }
+        /// <summary>
+        /// 底部电机反转
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_Motor_Buttom(-Convert.ToInt32(textBox3.Text));
+        }
+        /// <summary>
+        /// 手动背伸操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button17_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_BeishenZhiqu(Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动跖屈操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button18_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_BeishenZhiqu(-Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动内收操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button20_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_NeishouWaizhan(Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动外展操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button19_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_NeishouWaizhan(-Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动内翻操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button22_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_NeifanWaifan(Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动外翻操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button21_Click(object sender, EventArgs e)
+        {
+            Ma.Manual_NeifanWaifan(-Convert.ToInt32(textBox4.Text));
+        }
+        /// <summary>
+        /// 手动回零操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Ma.GoToZero();
         }
     }
 }
