@@ -1,4 +1,12 @@
-﻿using System;
+﻿/**
+* @ClassName：ManualAdjustment
+* @Author: Joey (zy19970@hotmail.com)
+* @Date: 2024.05.02
+* @Para: SetHDTDriver()
+* @Rely: 私有类CANalystHelper、HDTDriver
+* @Description: 实现手动操作单轴、单电机、多轴、多电机运动。
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -105,7 +113,7 @@ namespace RAS
             HDTZ.SetVelocity(0);
         }
         /// <summary>
-        /// 机器人左端推杆运动
+        /// 机器人左端(患者角度)推杆运动
         /// </summary>
         /// <param name="setValueThd">运动速度</param>
         public void Manual_PushRod_Left(int setValueThd = 20)
@@ -119,7 +127,7 @@ namespace RAS
             HDTZ.SetVelocity(0);
         }
         /// <summary>
-        /// 机器人右端推杆运动
+        /// 机器人右端(患者角度)推杆运动
         /// </summary>
         /// <param name="setValueThd">运动速度</param>
         public void Manual_PushRod_Right(int setValueThd = 20)
@@ -146,7 +154,9 @@ namespace RAS
             HDTY.SetVelocity(0);
             HDTZ.SetVelocity(-setValueThd / 6);
         }
-
+        /// <summary>
+        /// 手动控制机器人停止
+        /// </summary>
         public void Manual_Stop()
         {
             HDTX.VelocityInit();
