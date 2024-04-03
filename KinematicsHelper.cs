@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define KinematicEqulEncoder//映射编码器正负与逆解空间正负相同
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +45,11 @@ namespace RAS
         /// <returns></returns>
         public static int[] InverseSolution(double angle_x, double angle_y, double angle_z)
         {
+
+#if KinematicEqulEncoder
+            angle_y = -angle_y;
+            angle_z = -angle_z;
+#endif
 
             double[] b = { 120.0, 110.0, -4.5 };
 
