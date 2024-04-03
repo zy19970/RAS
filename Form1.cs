@@ -20,6 +20,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static RAS.TrainModel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -173,7 +174,10 @@ namespace RAS
         #endregion
         /************************************************/
 
+
         ManualAdjustment Ma = new ManualAdjustment();
+
+        TrainModel trainModel = new TrainModel();
 
 
         public MainForm()
@@ -183,7 +187,8 @@ namespace RAS
             LEDInit();
             SetialPortInit();
             ChartInit();
-            ManualInit();
+            Manual_DriverInit();
+            TrainModel_DriverInit();
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "初始化", "结束..........");
         }
 
@@ -208,10 +213,7 @@ namespace RAS
             LogUI.SetListBox(LogListBox);
         }
 
-        void ManualInit()
-        {
-            Ma.SetHDTDriver(HDTX,HDTY,HDTZ);
-        }
+
         #endregion
 
         #region 串口操作
@@ -1157,6 +1159,13 @@ namespace RAS
 
         #region 手动操作
         /// <summary>
+        /// 手动操作控制驱动器初始化
+        /// </summary>
+        void Manual_DriverInit()
+        {
+            Ma.SetHDTDriver(HDTX, HDTY, HDTZ);
+        }
+        /// <summary>
         /// 手动运动目标位置
         /// </summary>
         /// <param name="sender"></param>
@@ -1291,8 +1300,88 @@ namespace RAS
         {
             Ma.GoToZero();
         }
+
+        /// <summary>
+        /// 配置手动调整UI使能按钮
+        /// </summary>
+        private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) { panel2.Enabled = true; }
+            else { panel2.Enabled = false; }
+
+            if (checkBox17.Checked) { panel9.Enabled = true; }
+            else { panel9.Enabled = false; }
+
+            if (checkBox3.Checked) { panel4.Enabled = true; }
+            else { panel4.Enabled = false; }
+
+            if (checkBox4.Checked) { panel5.Enabled = true; }
+            else { panel5.Enabled = false; }
+
+            if (checkBox5.Checked) { panel6.Enabled = true; }
+            else { panel6.Enabled = false; }
+
+            if (checkBox18.Checked) { panel12.Enabled = true; }
+            else { panel12.Enabled = false; }
+        }
         #endregion
 
+        #region 被动训练
+        /// <summary>
+        /// 配置训练模式驱动器
+        /// </summary>
+        void TrainModel_DriverInit()
+        {
+            trainModel.SetHDTDriver(HDTX, HDTY, HDTZ);
+        }
+
+        /// <summary>
+        /// 开始被动训练按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Start_Beidong_Button_Click(object sender, EventArgs e)
+        {
+            int axix = 0x01;
+            int Low = 10;
+            int High = 10;
+
+            if (radioButton1.Checked)
+            {
+                axix = BeiDong_Train_Axis.BeishenZhiqu;
+                High = Convert.ToInt32(textBox16.Text);
+                Low = Convert.ToInt32(textBox17.Text);
+            }
+            else if (radioButton2.Checked)
+            {
+                axix = BeiDong_Train_Axis.NeishouWaizhan;
+                Low = Convert.ToInt32(textBox20.Text);
+                High = Convert.ToInt32(textBox21.Text);
+            }
+            else if (radioButton3.Checked)
+            {
+                axix = BeiDong_Train_Axis.NeifanWaifan;
+                Low = Convert.ToInt32(textBox18.Text);
+                High = Convert.ToInt32(textBox19.Text);
+            }
+            trainModel.Set_BeiDong_Parameter(axix, High, Low, Convert.ToInt32(textBox11.Text));
+            trainModel.Set_BeiDong_UI_Parameter(BeiDong_UI_panel, Start_Beidong_Button, Stop_Beidong_Button);
+            trainModel.BeiDong_Strat();
+        }
+        /// <summary>
+        /// 停止被动训练按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Stop_Beidong_Button_Click(object sender, EventArgs e)
+        {
+            trainModel.BeiDong_Stop();
+        }
+
+        #endregion
+        
+        
+        
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
@@ -1372,26 +1461,6 @@ namespace RAS
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
         }
 
-        /// <summary>
-        /// 配置手动调整UI使能按钮
-        /// </summary>
-        private void checkBox_Main_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked) { panel2.Enabled = true; }
-            else { panel2.Enabled = false; }
-
-            if (checkBox17.Checked) { panel9.Enabled = true; }
-            else { panel9.Enabled = false; }
-
-            if (checkBox3.Checked) { panel4.Enabled = true; }
-            else { panel4.Enabled = false; }
-
-            if (checkBox4.Checked) { panel5.Enabled = true; }
-            else { panel5.Enabled = false; }
-
-            if (checkBox5.Checked) { panel6.Enabled = true; }
-            else { panel6.Enabled = false; }
-        }
         
     }
 }

@@ -115,6 +115,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button23 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -185,7 +186,13 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Stop_Beidong_Button = new System.Windows.Forms.Button();
+            this.Start_Beidong_Button = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.ChartTimer = new System.Windows.Forms.Timer(this.components);
+            this.BeiDong_UI_panel = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -196,13 +203,8 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button28 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.ChartTimer = new System.Windows.Forms.Timer(this.components);
-            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -241,7 +243,8 @@
             this.panel10.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.BeiDong_UI_panel.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // AngleChart
@@ -1153,6 +1156,16 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "自由度调整";
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label33.Location = new System.Drawing.Point(97, 25);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(90, 14);
+            this.label33.TabIndex = 17;
+            this.label33.Text = "*右脚为参考";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.button23);
@@ -1441,6 +1454,7 @@
             this.button35.TabIndex = 29;
             this.button35.Text = "回零";
             this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.button23_Click);
             // 
             // button36
             // 
@@ -1461,6 +1475,7 @@
             this.checkBox18.TabIndex = 2;
             this.checkBox18.Text = "使能";
             this.checkBox18.UseVisualStyleBackColor = true;
+            this.checkBox18.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // groupBox16
             // 
@@ -1744,6 +1759,7 @@
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.label34);
             this.groupBox14.Controls.Add(this.label25);
             this.groupBox14.Controls.Add(this.label24);
             this.groupBox14.Controls.Add(this.label23);
@@ -1771,7 +1787,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label25.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label25.ForeColor = System.Drawing.Color.Navy;
             this.label25.Location = new System.Drawing.Point(11, 205);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(33, 16);
@@ -1782,7 +1798,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label24.ForeColor = System.Drawing.Color.Teal;
+            this.label24.ForeColor = System.Drawing.Color.Purple;
             this.label24.Location = new System.Drawing.Point(11, 131);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(33, 16);
@@ -1793,7 +1809,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label23.ForeColor = System.Drawing.Color.Red;
             this.label23.Location = new System.Drawing.Point(11, 51);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(33, 16);
@@ -1804,17 +1820,17 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label21.Location = new System.Drawing.Point(50, 221);
+            this.label21.ForeColor = System.Drawing.Color.Navy;
+            this.label21.Location = new System.Drawing.Point(50, 188);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(59, 16);
             this.label21.TabIndex = 38;
-            this.label21.Text = "内收-:";
+            this.label21.Text = "内收+:";
             // 
             // textBox20
             // 
             this.textBox20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox20.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.textBox20.ForeColor = System.Drawing.Color.Navy;
             this.textBox20.Location = new System.Drawing.Point(115, 217);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(58, 26);
@@ -1826,17 +1842,17 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label22.Location = new System.Drawing.Point(50, 193);
+            this.label22.ForeColor = System.Drawing.Color.Navy;
+            this.label22.Location = new System.Drawing.Point(50, 220);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 16);
             this.label22.TabIndex = 36;
-            this.label22.Text = "外展+:";
+            this.label22.Text = "外展-:";
             // 
             // textBox21
             // 
             this.textBox21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox21.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.textBox21.ForeColor = System.Drawing.Color.Navy;
             this.textBox21.Location = new System.Drawing.Point(115, 185);
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(58, 26);
@@ -1848,7 +1864,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.ForeColor = System.Drawing.Color.Teal;
+            this.label19.ForeColor = System.Drawing.Color.Purple;
             this.label19.Location = new System.Drawing.Point(50, 144);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 16);
@@ -1858,7 +1874,7 @@
             // textBox18
             // 
             this.textBox18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox18.ForeColor = System.Drawing.Color.Teal;
+            this.textBox18.ForeColor = System.Drawing.Color.Purple;
             this.textBox18.Location = new System.Drawing.Point(115, 140);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(58, 26);
@@ -1870,7 +1886,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.ForeColor = System.Drawing.Color.Teal;
+            this.label20.ForeColor = System.Drawing.Color.Purple;
             this.label20.Location = new System.Drawing.Point(50, 116);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 16);
@@ -1880,7 +1896,7 @@
             // textBox19
             // 
             this.textBox19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox19.ForeColor = System.Drawing.Color.Teal;
+            this.textBox19.ForeColor = System.Drawing.Color.Purple;
             this.textBox19.Location = new System.Drawing.Point(115, 108);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(58, 26);
@@ -1892,7 +1908,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label18.ForeColor = System.Drawing.Color.Red;
             this.label18.Location = new System.Drawing.Point(50, 68);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 16);
@@ -1902,7 +1918,7 @@
             // textBox17
             // 
             this.textBox17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox17.ForeColor = System.Drawing.Color.SeaGreen;
+            this.textBox17.ForeColor = System.Drawing.Color.Red;
             this.textBox17.Location = new System.Drawing.Point(115, 64);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(58, 26);
@@ -1914,7 +1930,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label17.ForeColor = System.Drawing.Color.Red;
             this.label17.Location = new System.Drawing.Point(50, 40);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 16);
@@ -1924,7 +1940,7 @@
             // textBox16
             // 
             this.textBox16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox16.ForeColor = System.Drawing.Color.SeaGreen;
+            this.textBox16.ForeColor = System.Drawing.Color.Red;
             this.textBox16.Location = new System.Drawing.Point(115, 32);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(58, 26);
@@ -1934,14 +1950,9 @@
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.panel1);
-            this.groupBox12.Controls.Add(this.label13);
-            this.groupBox12.Controls.Add(this.radioButton3);
-            this.groupBox12.Controls.Add(this.radioButton2);
-            this.groupBox12.Controls.Add(this.radioButton1);
-            this.groupBox12.Controls.Add(this.button26);
-            this.groupBox12.Controls.Add(this.button28);
-            this.groupBox12.Controls.Add(this.textBox11);
+            this.groupBox12.Controls.Add(this.BeiDong_UI_panel);
+            this.groupBox12.Controls.Add(this.Stop_Beidong_Button);
+            this.groupBox12.Controls.Add(this.Start_Beidong_Button);
             this.groupBox12.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox12.Location = new System.Drawing.Point(6, 6);
             this.groupBox12.Name = "groupBox12";
@@ -1950,19 +1961,76 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "被动训练";
             // 
-            // panel1
+            // Stop_Beidong_Button
             // 
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.textBox15);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.textBox14);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.textBox12);
-            this.panel1.Location = new System.Drawing.Point(112, 57);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 42);
-            this.panel1.TabIndex = 27;
-            this.panel1.Visible = false;
+            this.Stop_Beidong_Button.ForeColor = System.Drawing.Color.Firebrick;
+            this.Stop_Beidong_Button.Location = new System.Drawing.Point(330, 67);
+            this.Stop_Beidong_Button.Name = "Stop_Beidong_Button";
+            this.Stop_Beidong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Stop_Beidong_Button.TabIndex = 4;
+            this.Stop_Beidong_Button.Text = "停止训练";
+            this.Stop_Beidong_Button.UseVisualStyleBackColor = true;
+            this.Stop_Beidong_Button.Click += new System.EventHandler(this.Stop_Beidong_Button_Click);
+            // 
+            // Start_Beidong_Button
+            // 
+            this.Start_Beidong_Button.Location = new System.Drawing.Point(330, 29);
+            this.Start_Beidong_Button.Name = "Start_Beidong_Button";
+            this.Start_Beidong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Start_Beidong_Button.TabIndex = 2;
+            this.Start_Beidong_Button.Text = "开始训练";
+            this.Start_Beidong_Button.UseVisualStyleBackColor = true;
+            this.Start_Beidong_Button.Click += new System.EventHandler(this.Start_Beidong_Button_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(381, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "测试1";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(468, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "测试2";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // ChartTimer
+            // 
+            this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
+            // 
+            // BeiDong_UI_panel
+            // 
+            this.BeiDong_UI_panel.Controls.Add(this.panel13);
+            this.BeiDong_UI_panel.Controls.Add(this.label13);
+            this.BeiDong_UI_panel.Controls.Add(this.radioButton3);
+            this.BeiDong_UI_panel.Controls.Add(this.radioButton2);
+            this.BeiDong_UI_panel.Controls.Add(this.radioButton1);
+            this.BeiDong_UI_panel.Controls.Add(this.textBox11);
+            this.BeiDong_UI_panel.Location = new System.Drawing.Point(13, 23);
+            this.BeiDong_UI_panel.Name = "BeiDong_UI_panel";
+            this.BeiDong_UI_panel.Size = new System.Drawing.Size(311, 100);
+            this.BeiDong_UI_panel.TabIndex = 5;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.label16);
+            this.panel13.Controls.Add(this.textBox15);
+            this.panel13.Controls.Add(this.label15);
+            this.panel13.Controls.Add(this.textBox14);
+            this.panel13.Controls.Add(this.label14);
+            this.panel13.Controls.Add(this.textBox12);
+            this.panel13.Location = new System.Drawing.Point(104, 44);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(202, 42);
+            this.panel13.TabIndex = 33;
+            this.panel13.Visible = false;
             // 
             // label16
             // 
@@ -2028,29 +2096,29 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(134, 31);
+            this.label13.Location = new System.Drawing.Point(126, 18);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(77, 16);
-            this.label13.TabIndex = 26;
+            this.label13.TabIndex = 32;
             this.label13.Text = "周期(s):";
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(13, 79);
+            this.radioButton3.Location = new System.Drawing.Point(5, 66);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(93, 18);
-            this.radioButton3.TabIndex = 7;
+            this.radioButton3.TabIndex = 31;
             this.radioButton3.Text = "内翻/外翻";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(13, 55);
+            this.radioButton2.Location = new System.Drawing.Point(5, 42);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(93, 18);
-            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabIndex = 30;
             this.radioButton2.Text = "内收/外展";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -2058,74 +2126,33 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(13, 29);
+            this.radioButton1.Location = new System.Drawing.Point(5, 16);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(93, 18);
-            this.radioButton1.TabIndex = 5;
+            this.radioButton1.TabIndex = 29;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "背伸/跖屈";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // button26
-            // 
-            this.button26.ForeColor = System.Drawing.Color.Firebrick;
-            this.button26.Location = new System.Drawing.Point(330, 67);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(94, 23);
-            this.button26.TabIndex = 4;
-            this.button26.Text = "停止训练";
-            this.button26.UseVisualStyleBackColor = true;
-            // 
-            // button28
-            // 
-            this.button28.Location = new System.Drawing.Point(330, 29);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(94, 23);
-            this.button28.TabIndex = 2;
-            this.button28.Text = "开始训练";
-            this.button28.UseVisualStyleBackColor = true;
-            // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(207, 28);
+            this.textBox11.Location = new System.Drawing.Point(199, 15);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(43, 23);
-            this.textBox11.TabIndex = 1;
+            this.textBox11.TabIndex = 28;
             this.textBox11.Text = "10";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button2
+            // label34
             // 
-            this.button2.Location = new System.Drawing.Point(381, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "测试1";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(468, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "测试2";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // ChartTimer
-            // 
-            this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label33.Location = new System.Drawing.Point(97, 25);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(90, 14);
-            this.label33.TabIndex = 17;
-            this.label33.Text = "*右脚为参考";
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label34.ForeColor = System.Drawing.Color.Orange;
+            this.label34.Location = new System.Drawing.Point(12, 19);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(66, 10);
+            this.label34.TabIndex = 42;
+            this.label34.Text = "*右脚为参考";
             // 
             // MainForm
             // 
@@ -2213,9 +2240,10 @@
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.BeiDong_UI_panel.ResumeLayout(false);
+            this.BeiDong_UI_panel.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2262,16 +2290,8 @@
         private System.Windows.Forms.PictureBox CAN_LED_PicBox;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Button Stop_Beidong_Button;
+        private System.Windows.Forms.Button Start_Beidong_Button;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button9;
@@ -2330,10 +2350,6 @@
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox17;
@@ -2388,6 +2404,20 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Timer ChartTimer;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Panel BeiDong_UI_panel;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label34;
     }
 }
 
