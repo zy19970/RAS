@@ -144,16 +144,8 @@
             this.button36 = new System.Windows.Forms.Button();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.button33 = new System.Windows.Forms.Button();
-            this.button34 = new System.Windows.Forms.Button();
+            this.Stop_Dengsu_Button = new System.Windows.Forms.Button();
+            this.Start_Dengsu_Button = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
@@ -170,6 +162,7 @@
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -186,11 +179,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.Stop_Beidong_Button = new System.Windows.Forms.Button();
-            this.Start_Beidong_Button = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.ChartTimer = new System.Windows.Forms.Timer(this.components);
             this.BeiDong_UI_panel = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
@@ -204,7 +192,20 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
+            this.Stop_Beidong_Button = new System.Windows.Forms.Button();
+            this.Start_Beidong_Button = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.ChartTimer = new System.Windows.Forms.Timer(this.components);
+            this.DengSu_UI_panel = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -238,13 +239,14 @@
             this.groupBox17.SuspendLayout();
             this.panel12.SuspendLayout();
             this.groupBox16.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.panel10.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.BeiDong_UI_panel.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.DengSu_UI_panel.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // AngleChart
@@ -1479,12 +1481,9 @@
             // 
             // groupBox16
             // 
-            this.groupBox16.Controls.Add(this.panel11);
-            this.groupBox16.Controls.Add(this.radioButton7);
-            this.groupBox16.Controls.Add(this.radioButton8);
-            this.groupBox16.Controls.Add(this.radioButton9);
-            this.groupBox16.Controls.Add(this.button33);
-            this.groupBox16.Controls.Add(this.button34);
+            this.groupBox16.Controls.Add(this.DengSu_UI_panel);
+            this.groupBox16.Controls.Add(this.Stop_Dengsu_Button);
+            this.groupBox16.Controls.Add(this.Start_Dengsu_Button);
             this.groupBox16.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox16.Location = new System.Drawing.Point(6, 277);
             this.groupBox16.Name = "groupBox16";
@@ -1493,106 +1492,26 @@
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "等速训练";
             // 
-            // panel11
+            // Stop_Dengsu_Button
             // 
-            this.panel11.Controls.Add(this.label31);
-            this.panel11.Controls.Add(this.textBox27);
-            this.panel11.Controls.Add(this.label30);
-            this.panel11.Controls.Add(this.textBox26);
-            this.panel11.Location = new System.Drawing.Point(112, 29);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(202, 77);
-            this.panel11.TabIndex = 27;
+            this.Stop_Dengsu_Button.ForeColor = System.Drawing.Color.Firebrick;
+            this.Stop_Dengsu_Button.Location = new System.Drawing.Point(330, 67);
+            this.Stop_Dengsu_Button.Name = "Stop_Dengsu_Button";
+            this.Stop_Dengsu_Button.Size = new System.Drawing.Size(94, 23);
+            this.Stop_Dengsu_Button.TabIndex = 4;
+            this.Stop_Dengsu_Button.Text = "停止训练";
+            this.Stop_Dengsu_Button.UseVisualStyleBackColor = true;
+            this.Stop_Dengsu_Button.Click += new System.EventHandler(this.Stop_Dengsu_Button_Click);
             // 
-            // label31
+            // Start_Dengsu_Button
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(13, 13);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(50, 16);
-            this.label31.TabIndex = 36;
-            this.label31.Text = "速度:";
-            // 
-            // textBox27
-            // 
-            this.textBox27.Location = new System.Drawing.Point(64, 10);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(43, 23);
-            this.textBox27.TabIndex = 35;
-            this.textBox27.Text = "10";
-            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label30.Location = new System.Drawing.Point(15, 48);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 14);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "阈值:";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox26.Location = new System.Drawing.Point(63, 45);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(32, 23);
-            this.textBox26.TabIndex = 33;
-            this.textBox26.Text = "2";
-            this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(13, 79);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(93, 18);
-            this.radioButton7.TabIndex = 7;
-            this.radioButton7.Text = "内翻/外翻";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(13, 55);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(93, 18);
-            this.radioButton8.TabIndex = 6;
-            this.radioButton8.Text = "内收/外展";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            // 
-            // radioButton9
-            // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Checked = true;
-            this.radioButton9.Location = new System.Drawing.Point(13, 29);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(93, 18);
-            this.radioButton9.TabIndex = 5;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "背伸/跖屈";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            // 
-            // button33
-            // 
-            this.button33.ForeColor = System.Drawing.Color.Firebrick;
-            this.button33.Location = new System.Drawing.Point(330, 67);
-            this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(94, 23);
-            this.button33.TabIndex = 4;
-            this.button33.Text = "停止训练";
-            this.button33.UseVisualStyleBackColor = true;
-            // 
-            // button34
-            // 
-            this.button34.Location = new System.Drawing.Point(330, 29);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(94, 23);
-            this.button34.TabIndex = 2;
-            this.button34.Text = "开始训练";
-            this.button34.UseVisualStyleBackColor = true;
+            this.Start_Dengsu_Button.Location = new System.Drawing.Point(330, 29);
+            this.Start_Dengsu_Button.Name = "Start_Dengsu_Button";
+            this.Start_Dengsu_Button.Size = new System.Drawing.Size(94, 23);
+            this.Start_Dengsu_Button.TabIndex = 2;
+            this.Start_Dengsu_Button.Text = "开始训练";
+            this.Start_Dengsu_Button.UseVisualStyleBackColor = true;
+            this.Start_Dengsu_Button.Click += new System.EventHandler(this.Start_Dengsu_Button_Click);
             // 
             // groupBox15
             // 
@@ -1642,7 +1561,7 @@
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(32, 23);
             this.textBox25.TabIndex = 33;
-            this.textBox25.Text = "2";
+            this.textBox25.Text = "3";
             this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label26
@@ -1756,6 +1675,7 @@
             this.button32.TabIndex = 2;
             this.button32.Text = "开始训练";
             this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // groupBox14
             // 
@@ -1782,6 +1702,17 @@
             this.groupBox14.TabIndex = 2;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "运动空间";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label34.ForeColor = System.Drawing.Color.Orange;
+            this.label34.Location = new System.Drawing.Point(12, 19);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(66, 10);
+            this.label34.TabIndex = 42;
+            this.label34.Text = "*右脚为参考";
             // 
             // label25
             // 
@@ -1961,50 +1892,6 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "被动训练";
             // 
-            // Stop_Beidong_Button
-            // 
-            this.Stop_Beidong_Button.ForeColor = System.Drawing.Color.Firebrick;
-            this.Stop_Beidong_Button.Location = new System.Drawing.Point(330, 67);
-            this.Stop_Beidong_Button.Name = "Stop_Beidong_Button";
-            this.Stop_Beidong_Button.Size = new System.Drawing.Size(94, 23);
-            this.Stop_Beidong_Button.TabIndex = 4;
-            this.Stop_Beidong_Button.Text = "停止训练";
-            this.Stop_Beidong_Button.UseVisualStyleBackColor = true;
-            this.Stop_Beidong_Button.Click += new System.EventHandler(this.Stop_Beidong_Button_Click);
-            // 
-            // Start_Beidong_Button
-            // 
-            this.Start_Beidong_Button.Location = new System.Drawing.Point(330, 29);
-            this.Start_Beidong_Button.Name = "Start_Beidong_Button";
-            this.Start_Beidong_Button.Size = new System.Drawing.Size(94, 23);
-            this.Start_Beidong_Button.TabIndex = 2;
-            this.Start_Beidong_Button.Text = "开始训练";
-            this.Start_Beidong_Button.UseVisualStyleBackColor = true;
-            this.Start_Beidong_Button.Click += new System.EventHandler(this.Start_Beidong_Button_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(381, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "测试1";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(468, 20);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "测试2";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // ChartTimer
-            // 
-            this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
-            // 
             // BeiDong_UI_panel
             // 
             this.BeiDong_UI_panel.Controls.Add(this.panel13);
@@ -2143,16 +2030,142 @@
             this.textBox11.Text = "10";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label34
+            // Stop_Beidong_Button
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label34.ForeColor = System.Drawing.Color.Orange;
-            this.label34.Location = new System.Drawing.Point(12, 19);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(66, 10);
-            this.label34.TabIndex = 42;
-            this.label34.Text = "*右脚为参考";
+            this.Stop_Beidong_Button.ForeColor = System.Drawing.Color.Firebrick;
+            this.Stop_Beidong_Button.Location = new System.Drawing.Point(330, 67);
+            this.Stop_Beidong_Button.Name = "Stop_Beidong_Button";
+            this.Stop_Beidong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Stop_Beidong_Button.TabIndex = 4;
+            this.Stop_Beidong_Button.Text = "停止训练";
+            this.Stop_Beidong_Button.UseVisualStyleBackColor = true;
+            this.Stop_Beidong_Button.Click += new System.EventHandler(this.Stop_Beidong_Button_Click);
+            // 
+            // Start_Beidong_Button
+            // 
+            this.Start_Beidong_Button.Location = new System.Drawing.Point(330, 29);
+            this.Start_Beidong_Button.Name = "Start_Beidong_Button";
+            this.Start_Beidong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Start_Beidong_Button.TabIndex = 2;
+            this.Start_Beidong_Button.Text = "开始训练";
+            this.Start_Beidong_Button.UseVisualStyleBackColor = true;
+            this.Start_Beidong_Button.Click += new System.EventHandler(this.Start_Beidong_Button_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(381, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "测试1";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(468, 20);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "测试2";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // ChartTimer
+            // 
+            this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
+            // 
+            // DengSu_UI_panel
+            // 
+            this.DengSu_UI_panel.Controls.Add(this.panel11);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton7);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton8);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton9);
+            this.DengSu_UI_panel.Location = new System.Drawing.Point(7, 23);
+            this.DengSu_UI_panel.Name = "DengSu_UI_panel";
+            this.DengSu_UI_panel.Size = new System.Drawing.Size(317, 113);
+            this.DengSu_UI_panel.TabIndex = 5;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.label31);
+            this.panel11.Controls.Add(this.textBox27);
+            this.panel11.Controls.Add(this.label30);
+            this.panel11.Controls.Add(this.textBox26);
+            this.panel11.Location = new System.Drawing.Point(107, 18);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(202, 77);
+            this.panel11.TabIndex = 31;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label31.Location = new System.Drawing.Point(13, 13);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(50, 16);
+            this.label31.TabIndex = 36;
+            this.label31.Text = "速度:";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Location = new System.Drawing.Point(64, 10);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(43, 23);
+            this.textBox27.TabIndex = 35;
+            this.textBox27.Text = "15";
+            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label30.Location = new System.Drawing.Point(15, 48);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(45, 14);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "阈值:";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox26.Location = new System.Drawing.Point(63, 45);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(32, 23);
+            this.textBox26.TabIndex = 33;
+            this.textBox26.Text = "3";
+            this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(8, 68);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(93, 18);
+            this.radioButton7.TabIndex = 30;
+            this.radioButton7.Text = "内翻/外翻";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(8, 44);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(93, 18);
+            this.radioButton8.TabIndex = 29;
+            this.radioButton8.Text = "内收/外展";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Checked = true;
+            this.radioButton9.Location = new System.Drawing.Point(8, 18);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(93, 18);
+            this.radioButton9.TabIndex = 28;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "背伸/跖屈";
+            this.radioButton9.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -2230,9 +2243,6 @@
             this.groupBox17.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -2244,6 +2254,10 @@
             this.BeiDong_UI_panel.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            this.DengSu_UI_panel.ResumeLayout(false);
+            this.DengSu_UI_panel.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2382,16 +2396,8 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton9;
-        private System.Windows.Forms.Button button33;
-        private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Button Stop_Dengsu_Button;
+        private System.Windows.Forms.Button Start_Dengsu_Button;
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button button35;
@@ -2418,6 +2424,15 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Panel DengSu_UI_panel;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox26;
+        private System.Windows.Forms.RadioButton radioButton7;
+        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton radioButton9;
     }
 }
 

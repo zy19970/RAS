@@ -91,8 +91,8 @@ namespace RAS
         public static Object M8128Lock = new Object();//采集卡线程间安全锁
         public static Object STMLock = new Object();//MCU线程安全锁
 
-        static M8128 FTSensor = new M8128();//定义采集卡的力和力矩的数据结构
-        static DeDetail DegreeSensor = new DeDetail();//定义编码器三个角度的数据结构
+        public static M8128 FTSensor = new M8128();//定义采集卡的力和力矩的数据结构
+        public static DeDetail DegreeSensor = new DeDetail();//定义编码器三个角度的数据结构
 
         static bool IsSTMRev = false;
         static Thread STMRevMsgThread = new Thread(STMRevStart);
@@ -147,9 +147,9 @@ namespace RAS
         static public float Offset_Tz = 0.615f;
 
 
-        static public float Offset_Dx = -3.634f;
-        static public float Offset_Dy = 5.144f;
-        static public float Offset_Dz = 1.759f;
+        static public float Offset_Dx = -3.954f;
+        static public float Offset_Dy = 5.491f;
+        static public float Offset_Dz = 1.456f;
         #endregion
         /************************************************/
 
@@ -505,7 +505,7 @@ namespace RAS
         /// <summary>
         /// 官方注册的M8128串口接收线程
         /// </summary>
-        private static void M8128DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        private void M8128DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             TorqeIsUpdate = false;
             M8128RevData = new byte[29];
@@ -1348,24 +1348,24 @@ namespace RAS
 
             if (radioButton1.Checked)
             {
-                axix = BeiDong_Train_Axis.BeishenZhiqu;
+                axix = Train_Axis.BeishenZhiqu;
                 High = Convert.ToInt32(textBox16.Text);
                 Low = Convert.ToInt32(textBox17.Text);
             }
             else if (radioButton2.Checked)
             {
-                axix = BeiDong_Train_Axis.NeishouWaizhan;
+                axix = Train_Axis.NeishouWaizhan;
                 Low = Convert.ToInt32(textBox20.Text);
                 High = Convert.ToInt32(textBox21.Text);
             }
             else if (radioButton3.Checked)
             {
-                axix = BeiDong_Train_Axis.NeifanWaifan;
+                axix = Train_Axis.NeifanWaifan;
                 Low = Convert.ToInt32(textBox18.Text);
                 High = Convert.ToInt32(textBox19.Text);
             }
             trainModel.Set_BeiDong_Parameter(axix, High, Low, Convert.ToInt32(textBox11.Text));
-            trainModel.Set_BeiDong_UI_Parameter(BeiDong_UI_panel, Start_Beidong_Button, Stop_Beidong_Button);
+            trainModel.Set_Train_UI_Parameter(BeiDong_UI_panel, Start_Beidong_Button, Stop_Beidong_Button);
             trainModel.BeiDong_Strat();
         }
         /// <summary>
@@ -1457,10 +1457,52 @@ namespace RAS
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "测试", "写入操作", "无细节");
+
+            //trainModel.Set_Zhudong_Dong_Parameter(FTSensor);
+            trainModel.SetHDTDriver(HDTX, HDTY, HDTZ);
+            trainModel.ZhuDongTrain_Start();
         }
 
-        
+        private void button32_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Start_Dengsu_Button_Click(object sender, EventArgs e)
+        {
+            int axix = 0x01;
+            int Low = 10;
+            int High = 10;
+            int Speed = Convert.ToInt32(textBox27.Text);
+            int Thd = Convert.ToInt32(textBox26.Text);
+
+            if (radioButton9.Checked)
+            {
+                axix = Train_Axis.BeishenZhiqu;
+                High = Convert.ToInt32(textBox16.Text);
+                Low = Convert.ToInt32(textBox17.Text);
+            }
+            else if (radioButton8.Checked)
+            {
+                axix = Train_Axis.NeishouWaizhan;
+                Low = Convert.ToInt32(textBox20.Text);
+                High = Convert.ToInt32(textBox21.Text);
+            }
+            else if (radioButton7.Checked)
+            {
+                axix = Train_Axis.NeifanWaifan;
+                Low = Convert.ToInt32(textBox18.Text);
+                High = Convert.ToInt32(textBox19.Text);
+            }
+
+            trainModel.Set_Train_UI_Parameter(DengSu_UI_panel, Start_Dengsu_Button, Stop_Dengsu_Button);
+            trainModel.Set_ZhuDong_Parameter(axix, High, Low, Speed, Thd);
+            trainModel.ZhuDongTrain_Start();
+        }
+
+        private void Stop_Dengsu_Button_Click(object sender, EventArgs e)
+        {
+            trainModel.ZhuDongTrain_Stop();
+        }
     }
 }
