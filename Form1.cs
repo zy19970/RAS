@@ -66,11 +66,14 @@ namespace RAS
         #endregion
         /************************************************/
 
+        /********定义机器人传感器信息*************************/
+        #region 定义机器人传感器信息
         public static M8128 FTSensor = new M8128();//定义采集卡的力和力矩的数据结构
         public static DeDetail DegreeSensor = new DeDetail();//定义编码器三个角度的数据结构
 
         public static DeDetail IdealDegreeSensor = new DeDetail();//定义下发到机器人的编码器角度
-
+        #endregion
+        /************************************************/
 
         /********定义串口相关类*************************/
         #region 定义串口相关类
@@ -178,9 +181,7 @@ namespace RAS
         /************************************************/
 
 
-        ManualAdjustment Ma = new ManualAdjustment();
-
-        TrainModel trainModel = new TrainModel();
+        TrainModel trainModel = new TrainModel();//定义经典训练模式对象
 
 
         public MainForm()
@@ -1160,7 +1161,92 @@ namespace RAS
         }
         #endregion
 
+        #region 文件存储
+        FileHelper AngleFile;//角度存储类
+        FileHelper FTFile;//力矩信息存储类
+
+        int Timesample2SaveFIle = 100;//存储间隔
+        bool IsSaveFile = false;//存储标志位
+
+        /// <summary>
+        /// 保存一条数据
+        /// </summary>
+        private void AddItem2File()
+        {
+            AngleFile.SaveOneItem(DegreeSensor.degreeX, DegreeSensor.degreeY, DegreeSensor.degreeZ, IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ);
+            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
+        }
+        /// <summary>
+        /// 保存线程
+        /// </summary>
+        private void Save_main()
+        {
+            while (IsSaveFile)
+            {
+                Thread childThread = new Thread(AddItem2File);
+                childThread.Start();
+                Thread.Sleep(Timesample2SaveFIle - 2);
+            }
+            if (!IsSaveFile)
+            {
+                Thread.Sleep(100);
+                Thread.CurrentThread.Interrupt();
+                return;
+            }
+        }
+        /// <summary>
+        /// 打开存储路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Explorer.exe", Application.StartupPath + @"\Data");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AngleFile = new FileHelper();
+            FTFile = new FileHelper();
+
+            string filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_Angle.txt";
+            AngleFile.SetFilePath(filePath);
+            filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_FT.txt";
+            FTFile.SetFilePath(filePath);
+
+            AngleFile.SetFileHeader("实时角度", textBox9.Text, textBox8.Text, "");
+            FTFile.SetFileHeader("实时力矩", textBox9.Text, textBox8.Text, "");
+
+            AngleFile.StratSaveFile();
+            FTFile.StratSaveFile();
+
+            IsSaveFile = true;
+
+            AngleFile.SaveHeader(31);
+            FTFile.SaveHeader(60);
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "开始保存", "已开始");
+
+            Thread childThread = new Thread(Save_main);
+            childThread.Start();
+        }
+        /// <summary>
+        /// 停止保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button5_Click(object sender, EventArgs e)
+        {
+            IsSaveFile = false;
+
+            AngleFile.ForcedStop();
+            FTFile.ForcedStop();
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "停止保存", "已终止");
+        }
+        #endregion
+
         #region 手动操作
+        ManualAdjustment Ma = new ManualAdjustment();//定义手动调整对象
         /// <summary>
         /// 手动操作控制驱动器初始化
         /// </summary>
@@ -1382,9 +1468,53 @@ namespace RAS
         }
 
         #endregion
-        
-        
-        
+
+        #region 主动等速训练
+        /// <summary>
+        /// 开始等速训练
+        /// </summary>
+        private void Start_Dengsu_Button_Click(object sender, EventArgs e)
+        {
+            int axix = 0x01;
+            int Low = 10;
+            int High = 10;
+            int Speed = Convert.ToInt32(textBox27.Text);
+            int Thd = Convert.ToInt32(textBox26.Text);
+
+            if (radioButton9.Checked)
+            {
+                axix = Train_Axis.BeishenZhiqu;
+                High = Convert.ToInt32(textBox16.Text);
+                Low = Convert.ToInt32(textBox17.Text);
+            }
+            else if (radioButton8.Checked)
+            {
+                axix = Train_Axis.NeishouWaizhan;
+                Low = Convert.ToInt32(textBox20.Text);
+                High = Convert.ToInt32(textBox21.Text);
+            }
+            else if (radioButton7.Checked)
+            {
+                axix = Train_Axis.NeifanWaifan;
+                Low = Convert.ToInt32(textBox18.Text);
+                High = Convert.ToInt32(textBox19.Text);
+            }
+
+            trainModel.Set_Train_UI_Parameter(DengSu_UI_panel, Start_Dengsu_Button, Stop_Dengsu_Button);
+            trainModel.Set_ZhuDong_Parameter(axix, High, Low, Speed, Thd);
+            trainModel.ZhuDongTrain_Start();
+        }
+        /// <summary>
+        /// 停止等速训练
+        /// </summary>
+
+        private void Stop_Dengsu_Button_Click(object sender, EventArgs e)
+        {
+            trainModel.ZhuDongTrain_Stop();
+        }
+
+        #endregion
+
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
@@ -1469,116 +1599,8 @@ namespace RAS
 
         }
 
-        private void Start_Dengsu_Button_Click(object sender, EventArgs e)
-        {
-            int axix = 0x01;
-            int Low = 10;
-            int High = 10;
-            int Speed = Convert.ToInt32(textBox27.Text);
-            int Thd = Convert.ToInt32(textBox26.Text);
-
-            if (radioButton9.Checked)
-            {
-                axix = Train_Axis.BeishenZhiqu;
-                High = Convert.ToInt32(textBox16.Text);
-                Low = Convert.ToInt32(textBox17.Text);
-            }
-            else if (radioButton8.Checked)
-            {
-                axix = Train_Axis.NeishouWaizhan;
-                Low = Convert.ToInt32(textBox20.Text);
-                High = Convert.ToInt32(textBox21.Text);
-            }
-            else if (radioButton7.Checked)
-            {
-                axix = Train_Axis.NeifanWaifan;
-                Low = Convert.ToInt32(textBox18.Text);
-                High = Convert.ToInt32(textBox19.Text);
-            }
-
-            trainModel.Set_Train_UI_Parameter(DengSu_UI_panel, Start_Dengsu_Button, Stop_Dengsu_Button);
-            trainModel.Set_ZhuDong_Parameter(axix, High, Low, Speed, Thd);
-            trainModel.ZhuDongTrain_Start();
-        }
-
-        private void Stop_Dengsu_Button_Click(object sender, EventArgs e)
-        {
-            trainModel.ZhuDongTrain_Stop();
-        }
 
 
-        FileHelper AngleFile;
-        FileHelper FTFile;
-
-        int Timesample2SaveFIle = 100;//ms
-        bool IsSaveFile = false;
-
-        /// <summary>
-        /// 保存一条数据
-        /// </summary>
-        private void AddItem2File()
-        {
-            AngleFile.SaveOneItem(DegreeSensor.degreeX, DegreeSensor.degreeY, DegreeSensor.degreeZ, IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ);
-            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
-        }
-        /// <summary>
-        /// 保存线程
-        /// </summary>
-        private void Save_main()
-        {
-            while (IsSaveFile)
-            {
-                Thread childThread = new Thread(AddItem2File);
-                childThread.Start();
-                Thread.Sleep(Timesample2SaveFIle-2);
-            }
-            if (!IsSaveFile)
-            {
-                Thread.Sleep(100);
-                Thread.CurrentThread.Interrupt();
-                return;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("Explorer.exe", Application.StartupPath + @"\Data");
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            AngleFile = new FileHelper();
-            FTFile = new FileHelper();
-
-            string filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_Angle.txt";
-            AngleFile.SetFilePath(filePath);
-            filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_FT.txt";
-            FTFile.SetFilePath(filePath);
-
-            AngleFile.SetFileHeader("实时角度", textBox9.Text, textBox8.Text, "");
-            FTFile.SetFileHeader("实时力矩", textBox9.Text, textBox8.Text, "");
-
-            AngleFile.StratSaveFile();
-            FTFile.StratSaveFile();
-
-            IsSaveFile = true;
-
-            AngleFile.SaveHeader(31);
-            FTFile.SaveHeader(60);
-
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "开始保存", "已开始");
-
-            Thread childThread = new Thread(Save_main);
-            childThread.Start();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            IsSaveFile = false;
-
-            AngleFile.ForcedStop();
-            FTFile.ForcedStop();
-            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "停止保存", "已终止");
-        }
+        
     }
 }

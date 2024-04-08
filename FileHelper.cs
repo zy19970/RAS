@@ -340,7 +340,7 @@ namespace RAS
 
 
         /// <summary>
-        /// 保存数据表底
+        /// 废弃：保存数据表底
         /// </summary>
         public void SaveBottom()
         {
@@ -358,7 +358,7 @@ namespace RAS
             File_sw.Close();
         }
         /// <summary>
-        /// 保存数据表底
+        /// 废弃：保存数据表底
         /// </summary>
         /// <param name="IsOffset">是否保存偏置</param>
         public void SaveBottom(bool IsOffset = false)
@@ -411,7 +411,7 @@ namespace RAS
         }
     }
 
-    public class FileHelperOnForm
+    public class FileHelperOnForm//废弃
     {
         FileHelper AngleFile;
         FileHelper FTFile;
