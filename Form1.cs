@@ -1157,7 +1157,6 @@ namespace RAS
         {
             UpdateAngleQueue();
             UpdateTorqeQueue();
-            //Console.WriteLine(DateTime.Now.ToLocalTime().ToString());
         }
         #endregion
 
@@ -1587,20 +1586,22 @@ namespace RAS
             }
         }
 
-
+        TrajectoryHelper Tj=new TrajectoryHelper();
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Tj.SetTrackBar(Ref_TrackBar,Real_TrackBar);
+            Tj.StartDynamicsTrackBar();
 
         }
 
         private void button32_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-
-
-        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Tj.StopDynamicsTrackBar();
+        }
     }
 }

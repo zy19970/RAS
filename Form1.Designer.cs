@@ -207,6 +207,14 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.Ref_TrackBar = new System.Windows.Forms.TrackBar();
+            this.Real_TrackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -249,6 +257,11 @@
             this.panel13.SuspendLayout();
             this.ZhuDong_UI_panel.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox18.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Ref_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Real_TrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // AngleChart
@@ -586,6 +599,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(13, 208);
             this.tabControl1.Name = "tabControl1";
@@ -2036,6 +2050,7 @@
             this.button4.TabIndex = 13;
             this.button4.Text = "测试2";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // ChartTimer
             // 
@@ -2180,6 +2195,98 @@
             this.radioButton6.Text = "背伸/跖屈";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.Real_TrackBar);
+            this.tabPage3.Controls.Add(this.Ref_TrackBar);
+            this.tabPage3.Controls.Add(this.groupBox18);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(636, 413);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "轨迹跟踪";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.panel1);
+            this.groupBox18.Controls.Add(this.checkBox7);
+            this.groupBox18.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox18.Location = new System.Drawing.Point(441, 279);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(189, 128);
+            this.groupBox18.TabIndex = 6;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "手动控制";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button25);
+            this.panel1.Controls.Add(this.button26);
+            this.panel1.Enabled = false;
+            this.panel1.Location = new System.Drawing.Point(14, 54);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(169, 68);
+            this.panel1.TabIndex = 3;
+            // 
+            // button25
+            // 
+            this.button25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button25.Location = new System.Drawing.Point(17, 14);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(68, 40);
+            this.button25.TabIndex = 29;
+            this.button25.Text = "回零";
+            this.button25.UseVisualStyleBackColor = true;
+            // 
+            // button26
+            // 
+            this.button26.ForeColor = System.Drawing.Color.Firebrick;
+            this.button26.Location = new System.Drawing.Point(91, 14);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(68, 40);
+            this.button26.TabIndex = 28;
+            this.button26.Text = "停止";
+            this.button26.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(14, 29);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(56, 18);
+            this.checkBox7.TabIndex = 2;
+            this.checkBox7.Text = "使能";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // Ref_TrackBar
+            // 
+            this.Ref_TrackBar.AutoSize = false;
+            this.Ref_TrackBar.LargeChange = 0;
+            this.Ref_TrackBar.Location = new System.Drawing.Point(7, 12);
+            this.Ref_TrackBar.Maximum = 1500;
+            this.Ref_TrackBar.Minimum = -1500;
+            this.Ref_TrackBar.Name = "Ref_TrackBar";
+            this.Ref_TrackBar.Size = new System.Drawing.Size(620, 45);
+            this.Ref_TrackBar.TabIndex = 7;
+            this.Ref_TrackBar.TickFrequency = 10;
+            this.Ref_TrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.Ref_TrackBar.Value = -1000;
+            // 
+            // Real_TrackBar
+            // 
+            this.Real_TrackBar.AutoSize = false;
+            this.Real_TrackBar.LargeChange = 0;
+            this.Real_TrackBar.Location = new System.Drawing.Point(7, 35);
+            this.Real_TrackBar.Maximum = 1500;
+            this.Real_TrackBar.Minimum = -1500;
+            this.Real_TrackBar.Name = "Real_TrackBar";
+            this.Real_TrackBar.Size = new System.Drawing.Size(620, 34);
+            this.Real_TrackBar.TabIndex = 8;
+            this.Real_TrackBar.TickFrequency = 10;
+            this.Real_TrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2272,6 +2379,12 @@
             this.ZhuDong_UI_panel.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Ref_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Real_TrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2448,6 +2561,14 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TrackBar Real_TrackBar;
+        private System.Windows.Forms.TrackBar Ref_TrackBar;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.CheckBox checkBox7;
     }
 }
 
