@@ -144,23 +144,20 @@
             this.button36 = new System.Windows.Forms.Button();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.DengSu_UI_panel = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.Stop_Dengsu_Button = new System.Windows.Forms.Button();
             this.Start_Dengsu_Button = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.button31 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
+            this.Stop_ZhuDong_Button = new System.Windows.Forms.Button();
+            this.Start_ZhuDong_Button = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -197,15 +194,19 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.ChartTimer = new System.Windows.Forms.Timer(this.components);
-            this.DengSu_UI_panel = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.ZhuDong_UI_panel = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.AngleChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M8128Chart)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -239,14 +240,15 @@
             this.groupBox17.SuspendLayout();
             this.panel12.SuspendLayout();
             this.groupBox16.SuspendLayout();
+            this.DengSu_UI_panel.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.groupBox15.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.BeiDong_UI_panel.SuspendLayout();
             this.panel13.SuspendLayout();
-            this.DengSu_UI_panel.SuspendLayout();
-            this.panel11.SuspendLayout();
+            this.ZhuDong_UI_panel.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // AngleChart
@@ -412,6 +414,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "文件";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button5
             // 
@@ -426,6 +429,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "停止";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -440,6 +444,7 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "保存";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // open_configform_button
             // 
@@ -1492,6 +1497,99 @@
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "等速训练";
             // 
+            // DengSu_UI_panel
+            // 
+            this.DengSu_UI_panel.Controls.Add(this.panel11);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton7);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton8);
+            this.DengSu_UI_panel.Controls.Add(this.radioButton9);
+            this.DengSu_UI_panel.Location = new System.Drawing.Point(7, 23);
+            this.DengSu_UI_panel.Name = "DengSu_UI_panel";
+            this.DengSu_UI_panel.Size = new System.Drawing.Size(317, 113);
+            this.DengSu_UI_panel.TabIndex = 5;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.label31);
+            this.panel11.Controls.Add(this.textBox27);
+            this.panel11.Controls.Add(this.label30);
+            this.panel11.Controls.Add(this.textBox26);
+            this.panel11.Location = new System.Drawing.Point(107, 18);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(202, 77);
+            this.panel11.TabIndex = 31;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label31.Location = new System.Drawing.Point(13, 13);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(50, 16);
+            this.label31.TabIndex = 36;
+            this.label31.Text = "速度:";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Location = new System.Drawing.Point(64, 10);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(43, 23);
+            this.textBox27.TabIndex = 35;
+            this.textBox27.Text = "15";
+            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label30.Location = new System.Drawing.Point(15, 48);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(45, 14);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "阈值:";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox26.Location = new System.Drawing.Point(63, 45);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(32, 23);
+            this.textBox26.TabIndex = 33;
+            this.textBox26.Text = "3";
+            this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(8, 68);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(93, 18);
+            this.radioButton7.TabIndex = 30;
+            this.radioButton7.Text = "内翻/外翻";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(8, 44);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(93, 18);
+            this.radioButton8.TabIndex = 29;
+            this.radioButton8.Text = "内收/外展";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Checked = true;
+            this.radioButton9.Location = new System.Drawing.Point(8, 18);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(93, 18);
+            this.radioButton9.TabIndex = 28;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "背伸/跖屈";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            // 
             // Stop_Dengsu_Button
             // 
             this.Stop_Dengsu_Button.ForeColor = System.Drawing.Color.Firebrick;
@@ -1515,12 +1613,9 @@
             // 
             // groupBox15
             // 
-            this.groupBox15.Controls.Add(this.panel10);
-            this.groupBox15.Controls.Add(this.radioButton4);
-            this.groupBox15.Controls.Add(this.radioButton5);
-            this.groupBox15.Controls.Add(this.radioButton6);
-            this.groupBox15.Controls.Add(this.button31);
-            this.groupBox15.Controls.Add(this.button32);
+            this.groupBox15.Controls.Add(this.ZhuDong_UI_panel);
+            this.groupBox15.Controls.Add(this.Stop_ZhuDong_Button);
+            this.groupBox15.Controls.Add(this.Start_ZhuDong_Button);
             this.groupBox15.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox15.Location = new System.Drawing.Point(6, 143);
             this.groupBox15.Name = "groupBox15";
@@ -1529,153 +1624,25 @@
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "主动训练";
             // 
-            // panel10
+            // Stop_ZhuDong_Button
             // 
-            this.panel10.Controls.Add(this.label29);
-            this.panel10.Controls.Add(this.textBox25);
-            this.panel10.Controls.Add(this.label26);
-            this.panel10.Controls.Add(this.textBox22);
-            this.panel10.Controls.Add(this.label27);
-            this.panel10.Controls.Add(this.textBox23);
-            this.panel10.Controls.Add(this.label28);
-            this.panel10.Controls.Add(this.textBox24);
-            this.panel10.Location = new System.Drawing.Point(112, 29);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(202, 77);
-            this.panel10.TabIndex = 27;
+            this.Stop_ZhuDong_Button.ForeColor = System.Drawing.Color.Firebrick;
+            this.Stop_ZhuDong_Button.Location = new System.Drawing.Point(330, 67);
+            this.Stop_ZhuDong_Button.Name = "Stop_ZhuDong_Button";
+            this.Stop_ZhuDong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Stop_ZhuDong_Button.TabIndex = 4;
+            this.Stop_ZhuDong_Button.Text = "停止训练";
+            this.Stop_ZhuDong_Button.UseVisualStyleBackColor = true;
             // 
-            // label29
+            // Start_ZhuDong_Button
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label29.Location = new System.Drawing.Point(11, 47);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(45, 14);
-            this.label29.TabIndex = 34;
-            this.label29.Text = "阈值:";
-            // 
-            // textBox25
-            // 
-            this.textBox25.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox25.Location = new System.Drawing.Point(59, 44);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(32, 23);
-            this.textBox25.TabIndex = 33;
-            this.textBox25.Text = "3";
-            this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label26.Location = new System.Drawing.Point(133, 13);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(21, 14);
-            this.label26.TabIndex = 32;
-            this.label26.Text = "K:";
-            // 
-            // textBox22
-            // 
-            this.textBox22.Enabled = false;
-            this.textBox22.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox22.Location = new System.Drawing.Point(149, 10);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(32, 23);
-            this.textBox22.TabIndex = 31;
-            this.textBox22.Text = "0";
-            this.textBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label27.Location = new System.Drawing.Point(70, 13);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(21, 14);
-            this.label27.TabIndex = 30;
-            this.label27.Text = "B:";
-            // 
-            // textBox23
-            // 
-            this.textBox23.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox23.Location = new System.Drawing.Point(86, 10);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(32, 23);
-            this.textBox23.TabIndex = 29;
-            this.textBox23.Text = "10";
-            this.textBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label28.Location = new System.Drawing.Point(3, 13);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(21, 14);
-            this.label28.TabIndex = 28;
-            this.label28.Text = "M:";
-            // 
-            // textBox24
-            // 
-            this.textBox24.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox24.Location = new System.Drawing.Point(19, 10);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(32, 23);
-            this.textBox24.TabIndex = 27;
-            this.textBox24.Text = "10";
-            this.textBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(13, 79);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(93, 18);
-            this.radioButton4.TabIndex = 7;
-            this.radioButton4.Text = "内翻/外翻";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(13, 55);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(93, 18);
-            this.radioButton5.TabIndex = 6;
-            this.radioButton5.Text = "内收/外展";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(13, 29);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(93, 18);
-            this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "背伸/跖屈";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // button31
-            // 
-            this.button31.ForeColor = System.Drawing.Color.Firebrick;
-            this.button31.Location = new System.Drawing.Point(330, 67);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(94, 23);
-            this.button31.TabIndex = 4;
-            this.button31.Text = "停止训练";
-            this.button31.UseVisualStyleBackColor = true;
-            // 
-            // button32
-            // 
-            this.button32.Location = new System.Drawing.Point(330, 29);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(94, 23);
-            this.button32.TabIndex = 2;
-            this.button32.Text = "开始训练";
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.button32_Click);
+            this.Start_ZhuDong_Button.Location = new System.Drawing.Point(330, 29);
+            this.Start_ZhuDong_Button.Name = "Start_ZhuDong_Button";
+            this.Start_ZhuDong_Button.Size = new System.Drawing.Size(94, 23);
+            this.Start_ZhuDong_Button.TabIndex = 2;
+            this.Start_ZhuDong_Button.Text = "开始训练";
+            this.Start_ZhuDong_Button.UseVisualStyleBackColor = true;
+            this.Start_ZhuDong_Button.Click += new System.EventHandler(this.button32_Click);
             // 
             // groupBox14
             // 
@@ -2074,98 +2041,144 @@
             // 
             this.ChartTimer.Tick += new System.EventHandler(this.ChartTimer_Tick);
             // 
-            // DengSu_UI_panel
+            // ZhuDong_UI_panel
             // 
-            this.DengSu_UI_panel.Controls.Add(this.panel11);
-            this.DengSu_UI_panel.Controls.Add(this.radioButton7);
-            this.DengSu_UI_panel.Controls.Add(this.radioButton8);
-            this.DengSu_UI_panel.Controls.Add(this.radioButton9);
-            this.DengSu_UI_panel.Location = new System.Drawing.Point(7, 23);
-            this.DengSu_UI_panel.Name = "DengSu_UI_panel";
-            this.DengSu_UI_panel.Size = new System.Drawing.Size(317, 113);
-            this.DengSu_UI_panel.TabIndex = 5;
+            this.ZhuDong_UI_panel.Controls.Add(this.panel10);
+            this.ZhuDong_UI_panel.Controls.Add(this.radioButton4);
+            this.ZhuDong_UI_panel.Controls.Add(this.radioButton5);
+            this.ZhuDong_UI_panel.Controls.Add(this.radioButton6);
+            this.ZhuDong_UI_panel.Location = new System.Drawing.Point(6, 13);
+            this.ZhuDong_UI_panel.Name = "ZhuDong_UI_panel";
+            this.ZhuDong_UI_panel.Size = new System.Drawing.Size(318, 115);
+            this.ZhuDong_UI_panel.TabIndex = 5;
             // 
-            // panel11
+            // panel10
             // 
-            this.panel11.Controls.Add(this.label31);
-            this.panel11.Controls.Add(this.textBox27);
-            this.panel11.Controls.Add(this.label30);
-            this.panel11.Controls.Add(this.textBox26);
-            this.panel11.Location = new System.Drawing.Point(107, 18);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(202, 77);
-            this.panel11.TabIndex = 31;
+            this.panel10.Controls.Add(this.label29);
+            this.panel10.Controls.Add(this.textBox25);
+            this.panel10.Controls.Add(this.label26);
+            this.panel10.Controls.Add(this.textBox22);
+            this.panel10.Controls.Add(this.label27);
+            this.panel10.Controls.Add(this.textBox23);
+            this.panel10.Controls.Add(this.label28);
+            this.panel10.Controls.Add(this.textBox24);
+            this.panel10.Location = new System.Drawing.Point(108, 19);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(202, 77);
+            this.panel10.TabIndex = 31;
             // 
-            // label31
+            // label29
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(13, 13);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(50, 16);
-            this.label31.TabIndex = 36;
-            this.label31.Text = "速度:";
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label29.Location = new System.Drawing.Point(11, 47);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(45, 14);
+            this.label29.TabIndex = 34;
+            this.label29.Text = "阈值:";
             // 
-            // textBox27
+            // textBox25
             // 
-            this.textBox27.Location = new System.Drawing.Point(64, 10);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(43, 23);
-            this.textBox27.TabIndex = 35;
-            this.textBox27.Text = "15";
-            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox25.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox25.Location = new System.Drawing.Point(59, 44);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(32, 23);
+            this.textBox25.TabIndex = 33;
+            this.textBox25.Text = "3";
+            this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label30
+            // label26
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label30.Location = new System.Drawing.Point(15, 48);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 14);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "阈值:";
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label26.Location = new System.Drawing.Point(133, 13);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(21, 14);
+            this.label26.TabIndex = 32;
+            this.label26.Text = "K:";
             // 
-            // textBox26
+            // textBox22
             // 
-            this.textBox26.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox26.Location = new System.Drawing.Point(63, 45);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(32, 23);
-            this.textBox26.TabIndex = 33;
-            this.textBox26.Text = "3";
-            this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox22.Enabled = false;
+            this.textBox22.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox22.Location = new System.Drawing.Point(149, 10);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(32, 23);
+            this.textBox22.TabIndex = 31;
+            this.textBox22.Text = "0";
+            this.textBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // radioButton7
+            // label27
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(8, 68);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(93, 18);
-            this.radioButton7.TabIndex = 30;
-            this.radioButton7.Text = "内翻/外翻";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label27.Location = new System.Drawing.Point(70, 13);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(21, 14);
+            this.label27.TabIndex = 30;
+            this.label27.Text = "B:";
             // 
-            // radioButton8
+            // textBox23
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(8, 44);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(93, 18);
-            this.radioButton8.TabIndex = 29;
-            this.radioButton8.Text = "内收/外展";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.textBox23.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox23.Location = new System.Drawing.Point(86, 10);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(32, 23);
+            this.textBox23.TabIndex = 29;
+            this.textBox23.Text = "10";
+            this.textBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // radioButton9
+            // label28
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Checked = true;
-            this.radioButton9.Location = new System.Drawing.Point(8, 18);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(93, 18);
-            this.radioButton9.TabIndex = 28;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "背伸/跖屈";
-            this.radioButton9.UseVisualStyleBackColor = true;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label28.Location = new System.Drawing.Point(3, 13);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(21, 14);
+            this.label28.TabIndex = 28;
+            this.label28.Text = "M:";
+            // 
+            // textBox24
+            // 
+            this.textBox24.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox24.Location = new System.Drawing.Point(19, 10);
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new System.Drawing.Size(32, 23);
+            this.textBox24.TabIndex = 27;
+            this.textBox24.Text = "10";
+            this.textBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(9, 69);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(93, 18);
+            this.radioButton4.TabIndex = 30;
+            this.radioButton4.Text = "内翻/外翻";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(9, 45);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(93, 18);
+            this.radioButton5.TabIndex = 29;
+            this.radioButton5.Text = "内收/外展";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Checked = true;
+            this.radioButton6.Location = new System.Drawing.Point(9, 19);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(93, 18);
+            this.radioButton6.TabIndex = 28;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "背伸/跖屈";
+            this.radioButton6.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -2243,10 +2256,11 @@
             this.groupBox17.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
+            this.DengSu_UI_panel.ResumeLayout(false);
+            this.DengSu_UI_panel.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.groupBox12.ResumeLayout(false);
@@ -2254,10 +2268,10 @@
             this.BeiDong_UI_panel.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
-            this.DengSu_UI_panel.ResumeLayout(false);
-            this.DengSu_UI_panel.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
+            this.ZhuDong_UI_panel.ResumeLayout(false);
+            this.ZhuDong_UI_panel.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2381,20 +2395,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Button Stop_ZhuDong_Button;
+        private System.Windows.Forms.Button Start_ZhuDong_Button;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.Button Stop_Dengsu_Button;
         private System.Windows.Forms.Button Start_Dengsu_Button;
@@ -2433,6 +2435,19 @@
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.Panel ZhuDong_UI_panel;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }
 

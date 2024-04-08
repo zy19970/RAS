@@ -66,6 +66,11 @@ namespace RAS
         #endregion
         /************************************************/
 
+        public static M8128 FTSensor = new M8128();//定义采集卡的力和力矩的数据结构
+        public static DeDetail DegreeSensor = new DeDetail();//定义编码器三个角度的数据结构
+
+        public static DeDetail IdealDegreeSensor = new DeDetail();//定义下发到机器人的编码器角度
+
 
         /********定义串口相关类*************************/
         #region 定义串口相关类
@@ -91,8 +96,6 @@ namespace RAS
         public static Object M8128Lock = new Object();//采集卡线程间安全锁
         public static Object STMLock = new Object();//MCU线程安全锁
 
-        public static M8128 FTSensor = new M8128();//定义采集卡的力和力矩的数据结构
-        public static DeDetail DegreeSensor = new DeDetail();//定义编码器三个角度的数据结构
 
         static bool IsSTMRev = false;
         static Thread STMRevMsgThread = new Thread(STMRevStart);
@@ -1458,9 +1461,7 @@ namespace RAS
         private void button2_Click(object sender, EventArgs e)
         {
 
-            //trainModel.Set_Zhudong_Dong_Parameter(FTSensor);
-            trainModel.SetHDTDriver(HDTX, HDTY, HDTZ);
-            trainModel.ZhuDongTrain_Start();
+
         }
 
         private void button32_Click(object sender, EventArgs e)
@@ -1503,6 +1504,81 @@ namespace RAS
         private void Stop_Dengsu_Button_Click(object sender, EventArgs e)
         {
             trainModel.ZhuDongTrain_Stop();
+        }
+
+
+        FileHelper AngleFile;
+        FileHelper FTFile;
+
+        int Timesample2SaveFIle = 100;//ms
+        bool IsSaveFile = false;
+
+        /// <summary>
+        /// 保存一条数据
+        /// </summary>
+        private void AddItem2File()
+        {
+            AngleFile.SaveOneItem(DegreeSensor.degreeX, DegreeSensor.degreeY, DegreeSensor.degreeZ, IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ);
+            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
+        }
+        /// <summary>
+        /// 保存线程
+        /// </summary>
+        private void Save_main()
+        {
+            while (IsSaveFile)
+            {
+                Thread childThread = new Thread(AddItem2File);
+                childThread.Start();
+                Thread.Sleep(Timesample2SaveFIle-2);
+            }
+            if (!IsSaveFile)
+            {
+                Thread.Sleep(100);
+                Thread.CurrentThread.Interrupt();
+                return;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Explorer.exe", Application.StartupPath + @"\Data");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AngleFile = new FileHelper();
+            FTFile = new FileHelper();
+
+            string filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_Angle.txt";
+            AngleFile.SetFilePath(filePath);
+            filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_FT.txt";
+            FTFile.SetFilePath(filePath);
+
+            AngleFile.SetFileHeader("实时角度", textBox9.Text, textBox8.Text, "");
+            FTFile.SetFileHeader("实时力矩", textBox9.Text, textBox8.Text, "");
+
+            AngleFile.StratSaveFile();
+            FTFile.StratSaveFile();
+
+            IsSaveFile = true;
+
+            AngleFile.SaveHeader(31);
+            FTFile.SaveHeader(60);
+
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "开始保存", "已开始");
+
+            Thread childThread = new Thread(Save_main);
+            childThread.Start();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            IsSaveFile = false;
+
+            AngleFile.ForcedStop();
+            FTFile.ForcedStop();
+            LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "停止保存", "已终止");
         }
     }
 }

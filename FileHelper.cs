@@ -239,7 +239,7 @@ namespace RAS
         /// <summary>
         /// 保存表头
         /// </summary>
-        /// <param name="dimension">30:三维角度表头；60:六维力/矩表头；31:三维角度+实时表头</param>
+        /// <param name="dimension">30:三维角度表头；60:六维力/矩表头；31:三维角度+理想角度表头</param>
         public void SaveHeader(int dimension)
         {
             if (!IsEnableSave)
@@ -394,7 +394,7 @@ namespace RAS
 
 
         /// <summary>
-        /// 强制结束文件存储
+        /// 结束文件存储
         /// </summary>
         public void ForcedStop()
         {
@@ -435,6 +435,9 @@ namespace RAS
             AngleFile.SetFilePath(filePath);
             filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_FT.txt";
             FTFile.SetFilePath(filePath);
+
+            AngleFile.SetFileHeader("","","","");
+            FTFile.SetFileHeader("", "", "", "");
 
             AngleFile.StratSaveFile();
             FTFile.StratSaveFile();

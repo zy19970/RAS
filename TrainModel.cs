@@ -177,10 +177,14 @@ namespace RAS
                 BeidongIndex++;
 
                 //判断当前运动方向
-                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { SendPos(KinematicsHelper.InverseSolution(Degree, 0, 0)); }
-                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { SendPos(KinematicsHelper.InverseSolution(0, 0, Degree)); }
-                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { SendPos(KinematicsHelper.InverseSolution(0, Degree, 0)); }
 
+                
+                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { IdealDegreeSensor.degreeX=(float)Degree; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = 0; }
+                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = (float)Degree; }
+                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = (float)Degree; IdealDegreeSensor.degreeZ = 0; }
+
+
+                SendPos(KinematicsHelper.InverseSolution(IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ));
 
                 Thread.Sleep(BeidongCycleMs - 1);
 
@@ -294,9 +298,11 @@ namespace RAS
                 {
                     ZhuDong_Degree = -(float)LowLimit;
                 }
-                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { SendPos(KinematicsHelper.InverseSolution(ZhuDong_Degree, 0, 0)); }
-                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { SendPos(KinematicsHelper.InverseSolution(0, 0, ZhuDong_Degree)); }
-                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { SendPos(KinematicsHelper.InverseSolution(0, ZhuDong_Degree, 0)); }
+
+                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { IdealDegreeSensor.degreeX = (float)ZhuDong_Degree; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = 0; }
+                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = (float)ZhuDong_Degree; }
+                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = (float)ZhuDong_Degree; IdealDegreeSensor.degreeZ = 0; }
+                SendPos(KinematicsHelper.InverseSolution(IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ));
 
                 Thread.Sleep(24);
 
