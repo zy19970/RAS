@@ -1,4 +1,5 @@
-﻿/*
+﻿//#define CAN_SEND_CONSOLE //CAN报文发送成功命令行输出
+/*
  * @Author:Intron
  * @Data:2021.05.15
  * @Edition:V0.9.0
@@ -505,7 +506,13 @@ namespace RAS     //------------------>注意：这个命名空间最好修改�
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            else { Console.WriteLine("[OK]" + "\t" + sendobj.ID + "\t" + strdata); return true; }
+            else {
+
+#if CAN_SEND_CONSOLE
+                Console.WriteLine("[OK]" + "\t" + sendobj.ID + "\t" + strdata);
+#endif
+                return true; 
+            }
 
 
         }
