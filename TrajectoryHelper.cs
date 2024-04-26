@@ -62,7 +62,7 @@ namespace RAS
             IsDynamicsTrackBar = true;
             Thread.Sleep(20);
 
-            Thread mythread = new Thread(DynamicsTrackBarThreadEntry);
+            Thread mythread = new Thread(StaticTrackingThreadEntry);
             mythread.Start();
         }
 
@@ -87,6 +87,40 @@ namespace RAS
         public void StopDynamicsTrackBar()
         {
             IsDynamicsTrackBar = false;
+        }
+
+        public void StaticTrackingThreadEntry()
+        {
+            int index = 0;
+            while (IsDynamicsTrackBar)
+            {
+                if (index <= 50)
+                {
+                    SetRefTrackBar(10);
+                }
+                else if (index <= 100)
+                {
+                    SetRefTrackBar(-10);
+                }
+                else if (index <= 150)
+                {
+                    SetRefTrackBar(5);
+                }
+                else if (index <= 200)
+                {
+                    SetRefTrackBar(-5);
+                }
+                else
+                { index = 0; }
+                index++;
+                Thread.Sleep(100);
+            }
+            if (!IsDynamicsTrackBar)
+            {
+                Thread.Sleep(100);
+                Thread.CurrentThread.Interrupt();
+                return;
+            }
         }
 
     }

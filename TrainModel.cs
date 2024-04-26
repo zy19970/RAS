@@ -157,6 +157,8 @@ namespace RAS
             UIpanel.Enabled = true;
 
         }
+
+        ADRCHelper eso = new ADRCHelper();
         /// <summary>
         /// 被动训练线程入口
         /// </summary>
@@ -164,6 +166,8 @@ namespace RAS
         {
             double Degree = 0;
             BeidongIndex = 0;
+
+            double[] z = new double[3];
 
             while (IsTrainCycle)
             {
@@ -178,11 +182,16 @@ namespace RAS
 
                 //判断当前运动方向
 
-                
+                z=eso.ESO_ADRC(z[0], z[1], z[2], DegreeSensor.degreeX, Degree);
+
+                Degree = Degree+( Degree - z[0])*0.3;
+                Console.WriteLine((Degree + (Degree - z[0]) * 0.3).ToString("0.000"));
+
                 if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { IdealDegreeSensor.degreeX=(float)Degree; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = 0; }
                 else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = (float)Degree; }
                 else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = (float)Degree; IdealDegreeSensor.degreeZ = 0; }
 
+                
 
                 SendPos(KinematicsHelper.InverseSolution(IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ));
 

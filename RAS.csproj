@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADRCHelper.cs" />
     <Compile Include="CANHelper.cs" />
     <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>

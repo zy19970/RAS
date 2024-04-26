@@ -1603,5 +1603,7 @@ namespace RAS
         {
             Tj.StopDynamicsTrackBar();
         }
+
+
     }
 }
