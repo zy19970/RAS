@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using static RAS.MainForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace RAS
 {
@@ -158,7 +159,7 @@ namespace RAS
 
         }
 
-        ADRCHelper eso = new ADRCHelper();
+        
         /// <summary>
         /// 被动训练线程入口
         /// </summary>
@@ -182,10 +183,10 @@ namespace RAS
 
                 //判断当前运动方向
 
-                z=eso.ESO_ADRC(z[0], z[1], z[2], DegreeSensor.degreeX, Degree);
+                //z=eso.ESO_ADRC(z[0], z[1], z[2], DegreeSensor.degreeX, Degree);
 
-                Degree = Degree+( Degree - z[0])*0.3;
-                Console.WriteLine((Degree + (Degree - z[0]) * 0.3).ToString("0.000"));
+                //Degree = Degree+( Degree - z[0])*0.3;
+                //Console.WriteLine((Degree + (Degree - z[0]) * 0.3).ToString("0.000"));
 
                 if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { IdealDegreeSensor.degreeX=(float)Degree; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = 0; }
                 else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = (float)Degree; }
@@ -340,5 +341,257 @@ namespace RAS
         #endregion
 
 
-    }
+
+        #region ADRC
+
+        ADRCHelper eso = new ADRCHelper();
+
+        public static class ESOType
+        {
+            /// <summary>
+            /// 固定带宽
+            /// </summary>
+            public static int FixedESO = 0x01;
+            /// <summary>
+            /// 双带宽
+            /// </summary>
+            public static int BiESO = 0x02;
+            /// <summary>
+            /// 自适应带宽
+            /// </summary>
+            public static int ScaleESO = 0x03;
+            /// <summary>
+            /// 自割机制
+            /// </summary>
+            public static int AESO = 0x04;
+        }
+
+
+
+        int BetaType = 0x01;
+        int track = 0x01;
+        int Bandwidth = 6;
+        bool IsSpeedChange = false;
+        bool IsBandwidthChange = false;
+
+
+        public void Set_ADRC_Parameter(int axis, int Type,int w0,double hLimit=15, double lLimit=15, int speed = 15, int Thd = 3)
+        {
+            BetaType = Type;
+            Bandwidth = w0;
+            HighLimit = hLimit;
+            LowLimit = lLimit;
+            CurrentTrainingDirection = axis;
+            Isotonic_V = speed;
+            Isotonic_T = Thd;
+        }
+
+        public void SetADRC_Parameter(int axis, int ESOType,int tracktype,double hLimit = 15, double lLimit = 15, int w0=6, int speed = 15, int Thd = 3)
+        {
+            BetaType= ESOType;
+            track= tracktype;
+            Bandwidth =w0;
+            HighLimit = hLimit;
+            LowLimit = lLimit;
+            CurrentTrainingDirection = axis;
+            Isotonic_V = speed;
+            Isotonic_T = Thd;
+        }
+
+        public void ADRCTrain_Start()
+        {
+            //StopBtn.Enabled = true;
+            //StratBtn.Enabled = false;
+            //UIpanel.Enabled = false;
+
+            HDTX.IPInit();
+            HDTY.IPInit();
+            HDTZ.IPInit();
+
+            IsTrainCycle = true;
+            Thread.Sleep(20);
+
+            int StateCase = 0;
+
+            if (track== TrajectoryHelper.TrackType.Static)
+            {
+
+            }
+            else if (track == TrajectoryHelper.TrackType.Dynamics)
+            {
+
+            }
+
+            if (BetaType==ESOType.FixedESO)
+            {
+                StateCase = 1;
+            }
+            else if (BetaType==ESOType.BiESO)
+            {
+                StateCase = 2;
+            }
+            else if (BetaType == ESOType.ScaleESO)
+            {
+                StateCase = 3;
+            }
+            else if (BetaType == ESOType.AESO)
+            {
+                StateCase = 4;
+            }
+
+            switch (StateCase)
+            {
+                case 1:
+                    Bandwidth = 6;
+                    Isotonic_V = 10;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = false;
+                    IsSpeedChange = false;
+                    break;
+                case 2:
+                    Bandwidth = 6;
+                    Isotonic_V = 15;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = false;
+                    IsSpeedChange = true;
+                    break;
+                case 3:
+                    Bandwidth = 0;
+                    Isotonic_V = 15;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = false;
+                    IsSpeedChange = false;
+                    break;
+                case 4:
+                    Bandwidth = 0;
+                    Isotonic_V = 15;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = false;
+                    IsSpeedChange = true;
+                    break;
+                case 5:
+                    Bandwidth = 6;
+                    Isotonic_V = 5;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = true;
+                    IsSpeedChange = false;
+                    break;
+                case 6:
+                    Bandwidth = 6;
+                    Isotonic_V = 15;
+                    Isotonic_T = 3;
+                    IsBandwidthChange = true;
+                    IsSpeedChange = true;
+                    break;
+                default:
+                    ADRCTrain_Stop();
+                    break;
+            }
+
+
+
+            Thread mythread = new Thread(ADRCTrain_ThreadEntry);
+            mythread.Start();
+        }
+
+        private void ADRCTrain_ThreadEntry()
+        {
+
+            double[] z = new double[3];
+            double Degree = 0;
+
+            while (IsTrainCycle)
+            {
+                float Tq = 0.0f;
+
+                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { Tq = FTSensor.torqueX; }
+                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { Tq = FTSensor.torqueZ; }
+                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { Tq = FTSensor.torqueY; }
+
+                ZhuDong_increment = 0;
+
+                if (Math.Abs(Tq) <= Isotonic_T)
+                {
+                    ZhuDong_increment = Tanh(Tq) * Isotonic_V * 25 / 1000;
+                }
+                else if (Math.Abs(Tq) <= 2 * Isotonic_T)
+                {
+                    ZhuDong_increment = Sgn(Tq)*Isotonic_V * 25 / 1000;
+                }
+                else if (!IsSpeedChange)
+                {
+                    ZhuDong_increment = Sgn(Tq) * Isotonic_V * 25 / 1000;
+                }
+                else if (IsSpeedChange)
+                {
+                    ZhuDong_increment = Sgn(Tq) * 2 * Isotonic_V * 25 / 1000;
+                }
+
+                Degree = Degree + ZhuDong_increment;
+                if (Degree >= HighLimit)
+                {
+                    Degree = (float)HighLimit;
+                }
+                else if (Degree <= -LowLimit)
+                {
+                    Degree = -(float)LowLimit;
+                }
+
+                if (IsBandwidthChange)
+                {
+                    //if (Math.Abs(Tq) >= 5) { Bandwidth = 6; }
+                    //else { Bandwidth = 2; }
+
+                    if (Math.Abs(IdealDegreeSensor.degreeX - MainForm.TrackAngle) >= 3) { Bandwidth = 2; }
+                    else { Bandwidth = 1; }
+
+                    //z=eso.ESO_ADRC(z[0], z[1], z[2], DegreeSensor.degreeX, Degree);
+                    z = eso.ESO_ADRC(z[0], z[1], z[2], IdealDegreeSensor.degreeX, Degree, Bandwidth);
+                    Degree = Degree + (Degree - z[0]) * 0.3;
+                    Console.WriteLine((Degree + (Degree - z[0]) * 0.3).ToString("0.000"));
+
+                }
+                else if (Bandwidth == 0)
+                {
+
+                }
+                else 
+                {
+                    //z=eso.ESO_ADRC(z[0], z[1], z[2], DegreeSensor.degreeX, Degree);
+                    z = eso.ESO_ADRC(z[0], z[1], z[2], IdealDegreeSensor.degreeX, Degree, Bandwidth);
+                    Degree = Degree + (Degree - z[0]) * 0.3;
+                    Console.WriteLine((Degree + (Degree - z[0]) * 0.3).ToString("0.000"));
+                }
+
+
+                
+                
+
+                if (CurrentTrainingDirection == Train_Axis.BeishenZhiqu) { IdealDegreeSensor.degreeX = (float)Degree; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = 0; }
+                else if (CurrentTrainingDirection == Train_Axis.NeishouWaizhan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = 0; IdealDegreeSensor.degreeZ = (float)Degree; }
+                else if (CurrentTrainingDirection == Train_Axis.NeifanWaifan) { IdealDegreeSensor.degreeX = 0; IdealDegreeSensor.degreeY = (float)Degree; IdealDegreeSensor.degreeZ = 0; }
+                SendPos(KinematicsHelper.InverseSolution(IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ));
+
+                Thread.Sleep(24);
+
+            }
+            if (!IsTrainCycle)
+            {
+                Thread.Sleep(100);
+                Thread.CurrentThread.Interrupt();
+                return;
+            }
+        }
+        public void ADRCTrain_Stop()
+        {
+            IsTrainCycle = false;
+            HDTX.IPStop();
+            HDTY.IPStop();
+            HDTZ.IPStop();
+        }
+
+            #endregion
+
+
+        }
 }

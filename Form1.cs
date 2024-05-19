@@ -148,9 +148,9 @@ namespace RAS
         static public float Offset_Fx = 55.701f;
         static public float Offset_Fy = -12.738f;
         static public float Offset_Fz = -52.249f;
-        static public float Offset_Tx = -1.227f;
-        static public float Offset_Ty = -0.677f;
-        static public float Offset_Tz = 0.615f;
+        static public float Offset_Tx = -5.215f;
+        static public float Offset_Ty = -1.734f;
+        static public float Offset_Tz = -0.115f;
 
 
         static public float Offset_Dx = -3.954f;
@@ -1172,7 +1172,7 @@ namespace RAS
         /// </summary>
         private void AddItem2File()
         {
-            AngleFile.SaveOneItem(DegreeSensor.degreeX, DegreeSensor.degreeY, DegreeSensor.degreeZ, IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ);
+            AngleFile.SaveOneItem(TrackAngle,IdealDegreeSensor.degreeX, DegreeSensor.degreeX);//-------------------adrc
             FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
         }
         /// <summary>
@@ -1208,20 +1208,21 @@ namespace RAS
             AngleFile = new FileHelper();
             FTFile = new FileHelper();
 
-            string filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_Angle.txt";
+            string filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + FileSaveSubjectItem.Text + "_" + FileSaveItem.Text + "_Angle.txt";
             AngleFile.SetFilePath(filePath);
-            filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_FT.txt";
+            filePath = Application.StartupPath + @"\Data\" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss ") + FileSaveSubjectItem.Text + "_" + FileSaveItem.Text + "_FT.txt";
             FTFile.SetFilePath(filePath);
 
-            AngleFile.SetFileHeader("实时角度", textBox9.Text, textBox8.Text, "");
-            FTFile.SetFileHeader("实时力矩", textBox9.Text, textBox8.Text, "");
+            AngleFile.SetFileHeader("实时角度", FileSaveItem.Text, FileSaveSubjectItem.Text, "");
+            FTFile.SetFileHeader("实时力矩", FileSaveItem.Text, FileSaveSubjectItem.Text, "");
 
             AngleFile.StratSaveFile();
             FTFile.StratSaveFile();
 
             IsSaveFile = true;
 
-            AngleFile.SaveHeader(31);
+            //AngleFile.SaveHeader(31);-----------adrc
+            AngleFile.SaveHeader("ADRC");
             FTFile.SaveHeader(60);
 
             LogUI.Log(Thread.CurrentThread.ManagedThreadId, "保存", "开始保存", "已开始");
@@ -1514,6 +1515,51 @@ namespace RAS
 
         #endregion
 
+        #region ADRC
+        TrajectoryHelper Tj = new TrajectoryHelper();
+
+        public static float TrackAngle = 0;
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            Tj.SetTrackBar(Ref_TrackBar, Real_TrackBar);
+            if (radioButton14.Checked)
+            {
+                Tj.StartStaticTrack();
+                FileSaveItem.Text = "ESO静态跟踪 ";
+                if (radioButton12.Checked) { FileSaveItem.Text += "-固定参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.FixedESO, TrajectoryHelper.TrackType.Static); }
+                if (radioButton10.Checked) { FileSaveItem.Text += "-自适应参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.ScaleESO, TrajectoryHelper.TrackType.Static); }
+                if (radioButton11.Checked) { FileSaveItem.Text += "-双带宽"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.BiESO, TrajectoryHelper.TrackType.Static); }
+                if (radioButton13.Checked) { FileSaveItem.Text += "-自割机制"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.AESO, TrajectoryHelper.TrackType.Static); }
+
+
+            }
+            else if (radioButton15.Checked)
+            {
+                Tj.StartDynamicsTrack();
+                FileSaveItem.Text = "ESO动态跟踪 ";
+                if (radioButton12.Checked) { FileSaveItem.Text+="-固定参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.FixedESO, TrajectoryHelper.TrackType.Dynamics); }
+                if (radioButton10.Checked) { FileSaveItem.Text += "-自适应参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.ScaleESO, TrajectoryHelper.TrackType.Dynamics); }
+                if (radioButton11.Checked) { FileSaveItem.Text += "-双带宽"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.BiESO, TrajectoryHelper.TrackType.Dynamics); }
+                if (radioButton13.Checked) { FileSaveItem.Text += "-自割机制"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.AESO, TrajectoryHelper.TrackType.Dynamics); }
+
+
+            }
+
+
+            trainModel.ADRCTrain_Start();
+
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            Tj.StopDynamicsTrackBar();
+            trainModel.ADRCTrain_Stop();
+        }
+
+
+        #endregion
+
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
@@ -1586,11 +1632,12 @@ namespace RAS
             }
         }
 
-        TrajectoryHelper Tj=new TrajectoryHelper();
+        
         private void button2_Click(object sender, EventArgs e)
         {
             Tj.SetTrackBar(Ref_TrackBar,Real_TrackBar);
-            Tj.StartDynamicsTrackBar();
+            //Tj.StartStaticTrack();
+            Tj.StartDynamicsTrack();
 
         }
 

@@ -9,9 +9,8 @@ namespace RAS
     internal class ADRCHelper
     {
         double T = 0.025;
-        public double[] ESO_ADRC(double z01, double z02, double z03,double y,double u0)
+        public double[] ESO_ADRC(double z01, double z02, double z03,double y,double u0,double w0=6)
         {
-            double w0 = 6;
 
             double z1 = 0;
             double z2 = 0;

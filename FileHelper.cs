@@ -409,7 +409,37 @@ namespace RAS
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //--------------------------目标轨迹、理论轨迹、实际轨迹-----------------------------------------
+
+        public void SaveHeader(string dimension) 
+        {
+            if (!IsEnableSave)
+            {
+                Console.WriteLine("[ERROE]--当前未处于保存状态，请配置存储状态。");
+                return;
+            }
+            File_sw.WriteLine(MyHeader.Title);
+            File_sw.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            File_sw.WriteLine("┃  PATIENT:" + MyHeader.Tester + "\t" + "┃  ITEM:" + MyHeader.Item + "\t" + "┃  STRAT TIME:" + DateTime.Now.ToString() + "\t" + "┃  Remarks:" + MyHeader.Remarks);
+            File_sw.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+            if (dimension == "ADRC")
+            {
+                File_sw.WriteLine("目标轨迹" + "\t" + "理论轨迹" + "\t" + "实际轨迹");
+            }
+            else
+            { return; }
+        }
+
+
+
+        //--------------------------------------------------------------------------------------
+
     }
+
+
+
 
     public class FileHelperOnForm//废弃
     {
