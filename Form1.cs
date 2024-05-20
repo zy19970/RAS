@@ -1173,7 +1173,7 @@ namespace RAS
         private void AddItem2File()
         {
             AngleFile.SaveOneItem(DegreeSensor.degreeX, DegreeSensor.degreeY, DegreeSensor.degreeZ, IdealDegreeSensor.degreeX, IdealDegreeSensor.degreeY, IdealDegreeSensor.degreeZ);
-            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
+            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.torqueX, FTSensor.forceY, FTSensor.torqueY, FTSensor.forceZ, FTSensor.torqueZ);
         }
         /// <summary>
         /// 保存线程
