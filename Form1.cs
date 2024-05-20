@@ -1387,7 +1387,12 @@ namespace RAS
         /// <param name="e"></param>
         private void button23_Click(object sender, EventArgs e)
         {
+
+            checkBox18.Checked = false;
+            checkBox7.Checked = false;
+            checkBox_Main_CheckedChanged(sender, e);
             Ma.GoToZero();
+
         }
 
         /// <summary>
@@ -1412,6 +1417,9 @@ namespace RAS
 
             if (checkBox18.Checked) { panel12.Enabled = true; }
             else { panel12.Enabled = false; }
+
+            if (checkBox7.Checked) { panel1.Enabled = true; }
+            else { panel1.Enabled = false; }
         }
         #endregion
 
@@ -1528,8 +1536,8 @@ namespace RAS
                 Tj.StartStaticTrack();
                 FileSaveItem.Text = "ESO静态跟踪 ";
                 if (radioButton12.Checked) { FileSaveItem.Text += "-固定参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.FixedESO, TrajectoryHelper.TrackType.Static); }
-                if (radioButton10.Checked) { FileSaveItem.Text += "-自适应参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.ScaleESO, TrajectoryHelper.TrackType.Static); }
                 if (radioButton11.Checked) { FileSaveItem.Text += "-双带宽"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.BiESO, TrajectoryHelper.TrackType.Static); }
+                if (radioButton10.Checked) { FileSaveItem.Text += "-自适应参数"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.ScaleESO, TrajectoryHelper.TrackType.Static); }
                 if (radioButton13.Checked) { FileSaveItem.Text += "-自割机制"; trainModel.SetADRC_Parameter(Train_Axis.BeishenZhiqu, TrainModel.ESOType.AESO, TrajectoryHelper.TrackType.Static); }
 
 

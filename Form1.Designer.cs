@@ -1502,6 +1502,7 @@
             this.button36.TabIndex = 28;
             this.button36.Text = "停止";
             this.button36.UseVisualStyleBackColor = true;
+            this.button36.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // checkBox18
             // 
@@ -2212,9 +2213,9 @@
             this.label38.ForeColor = System.Drawing.Color.Lime;
             this.label38.Location = new System.Drawing.Point(6, 52);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(27, 27);
+            this.label38.Size = new System.Drawing.Size(40, 27);
             this.label38.TabIndex = 37;
-            this.label38.Text = "-";
+            this.label38.Text = "负";
             // 
             // label37
             // 
@@ -2223,9 +2224,9 @@
             this.label37.ForeColor = System.Drawing.Color.DeepPink;
             this.label37.Location = new System.Drawing.Point(606, 51);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(27, 27);
+            this.label37.Size = new System.Drawing.Size(40, 27);
             this.label37.TabIndex = 36;
-            this.label37.Text = "+";
+            this.label37.Text = "正";
             // 
             // groupBox19
             // 
@@ -2413,6 +2414,7 @@
             this.button25.TabIndex = 29;
             this.button25.Text = "回零";
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button23_Click);
             // 
             // button26
             // 
@@ -2423,6 +2425,7 @@
             this.button26.TabIndex = 28;
             this.button26.Text = "停止";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.PushRod_Stop);
             // 
             // checkBox7
             // 
@@ -2433,6 +2436,7 @@
             this.checkBox7.TabIndex = 2;
             this.checkBox7.Text = "使能";
             this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox_Main_CheckedChanged);
             // 
             // button2
             // 
