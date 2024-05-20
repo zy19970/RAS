@@ -571,6 +571,8 @@ namespace RAS
                 }
                 else
                 { FTSensor.forceX = BitConverter.ToSingle(M8128RevData, 4) + Offset_Fx; }
+
+
                 if ((BitConverter.ToSingle(M8128RevData, 16) + Offset_Tx) > 5000.0f || (BitConverter.ToSingle(M8128RevData, 16) + Offset_Tx) < -5000)
                 {
                     Console.WriteLine("Tx:{0}", BitConverter.ToSingle(M8128RevData, 16) + Offset_Tx);
@@ -585,6 +587,7 @@ namespace RAS
                 }
                 else
                 { FTSensor.forceY = BitConverter.ToSingle(M8128RevData, 8) + Offset_Fy; }
+
                 if ((BitConverter.ToSingle(M8128RevData, 20) + Offset_Ty) > 5000.0f || (BitConverter.ToSingle(M8128RevData, 20) + Offset_Ty) < -5000)
                 {
                     Console.WriteLine("Ty:{0}", BitConverter.ToSingle(M8128RevData, 20) + Offset_Ty);
@@ -599,6 +602,7 @@ namespace RAS
                 }
                 else
                 { FTSensor.forceZ = BitConverter.ToSingle(M8128RevData, 12) + Offset_Fz; }
+
                 if ((BitConverter.ToSingle(M8128RevData, 24) + Offset_Tz) > 5000.0f || (BitConverter.ToSingle(M8128RevData, 24) + Offset_Tz) < -5000)
                 {
                     Console.WriteLine("Tz:{0}", BitConverter.ToSingle(M8128RevData, 24) + Offset_Tz);
@@ -1173,7 +1177,7 @@ namespace RAS
         private void AddItem2File()
         {
             AngleFile.SaveOneItem(TrackAngle,IdealDegreeSensor.degreeX, DegreeSensor.degreeX);//-------------------adrc
-            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.forceY, FTSensor.forceZ, FTSensor.torqueX, FTSensor.torqueY, FTSensor.torqueZ);
+            FTFile.SaveOneItem(FTSensor.forceX, FTSensor.torqueX, FTSensor.forceY, FTSensor.torqueY, FTSensor.forceZ, FTSensor.torqueZ);
         }
         /// <summary>
         /// 保存线程

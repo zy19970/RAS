@@ -2211,7 +2211,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("宋体", 20F, System.Drawing.FontStyle.Bold);
             this.label38.ForeColor = System.Drawing.Color.Lime;
-            this.label38.Location = new System.Drawing.Point(6, 52);
+            this.label38.Location = new System.Drawing.Point(-7, 52);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(40, 27);
             this.label38.TabIndex = 37;
